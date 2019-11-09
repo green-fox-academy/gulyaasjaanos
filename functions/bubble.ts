@@ -18,6 +18,47 @@ function bubble(tosort:number[],desc:boolean) {
     return sorted;
 }
 
+function mySort(list: number[]) {
+    let unsorted: boolean= true;
+    let puffer: number= -1;
+    do {
+        unsorted= false;
+        for (let i= 0; i < list.length - 1; i++) {
+            if ( list[i] > list[i+1] ) {
+                puffer= list[i];
+                list[i]= list[i+1];
+                list[i+1]= puffer;
+                unsorted= true;
+            }
+        }
+    }
+    while (unsorted);
+    return list;
+}
+
+function myReverse(list: number[]) {
+    let i= 0;
+    let puffer: number= -1;
+    while ( i !== list.length -1 -i && i !== list.length -i ) {
+        puffer= list[i];
+        list[i]= list[list.length -1 - i];
+        list[list.length -1 - i]= puffer;
+        i++;
+    }
+    return list;
+}
+
+function myBubble(tosort:number[],desc:boolean) {
+    let sorted:number[]= mySort(tosort);
+    if (desc) {
+        myReverse(sorted);
+    }
+    return sorted;
+}
+
+
 console.log(bubble([34, 12, 24, 9, 5], true));
+console.log(myBubble([34, 12, 24, 9, 5], true));
+
 
 export{};

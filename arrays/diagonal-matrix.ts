@@ -28,8 +28,6 @@ for (let i=0; i < size; i++) {
         line+= matrix[i][j] + ' ';
     }
     console.log(line);
-    console.log('');
 }
-
 
 export{};

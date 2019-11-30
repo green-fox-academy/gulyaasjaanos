@@ -2,10 +2,10 @@
 
 const fs = require('fs');
 
-function decrypt(source :string, ):boolean {
+function decrypt(source :string):boolean {
     try {
         let content= fs.readFileSync(source, 'utf-8').split('\r\n').map( e => e.split('').reverse().join('') + "\r\n" ).join('');
-        let target: string= source.replace(".","_reversed.");
+        let target = source.replace(".","_reversed.");
         fs.writeFileSync(target, content);
         return true;
     }
@@ -15,7 +15,7 @@ function decrypt(source :string, ):boolean {
     
 }
 
-let source :string= "reversed-lines.txt";
-console.log(`Reverse was successful: ${decrypt(source)}`)
+const SOURCE = "reversed-lines.txt";
+console.log(`Reverse was successful: ${decrypt(SOURCE)}`)
 
 export{};

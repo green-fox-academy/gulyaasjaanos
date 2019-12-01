@@ -32,12 +32,8 @@ const birthyear = (source: string[][]):{ [key: string] :number } => {
     },{} );
 }
 
-//console.log (`Number of unique IP addresses: ${ips(source)}`);
-//console.log (`GET / POST ratio: ${method(source)["GET"]} / ${method(source)["POST"]}`);
-
 const birthdata = birthyear(source);
-const births: number[] = Object.values(birthdata); 
-const maxbirth: number= Math.max(...births);
+const maxbirth: number= Math.max(...Object.values(birthdata));
 const maxbirthYears: string = Object.keys(birthdata).filter( (e) => birthdata[e] === maxbirth ).join(",");
 console.log(`These years had the most births: ${maxbirthYears}`);
 

@@ -24,7 +24,7 @@ function drawTriangle(px:number,py:number,width:number,length:number,color:strin
 }
 
 
-const DEPTH = 6;
+const DEPTH = 5;
 const SIZE = 600;
 const color = `${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)}`;
 drawTriangle(SIZE/2,SIZE/22,SIZE,Math.sqrt(3)/2*SIZE,color,DEPTH);

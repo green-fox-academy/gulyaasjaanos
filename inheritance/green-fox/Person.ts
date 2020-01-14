@@ -2,9 +2,9 @@
 
 class Person {
 
-    name:string;
-    age:number;
-    gender:string;
+    protected name:string;
+    protected age:number;
+    protected gender:string;
 
     constructor(name:string = "Jane Doe", age:number = 30, gender = "female" ) {
         this.name = name;

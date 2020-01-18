@@ -23,6 +23,14 @@ const color = `${Math.floor(Math.random()*256)},${Math.floor(Math.random()*256)}
 
 for (let i = step; i < QUARTER; i+= step) {
     drawLine(0,i,color,0,0);
+    const Q1 = new Quarter({
+        x:0,
+        y:i,
+        color:color,
+        offsetX:0,
+        offsetY:0,
+        quarter:0
+    });
 }
 for (let i = step; i < QUARTER; i+= step) {
     drawLine(i,0,color,300,0);

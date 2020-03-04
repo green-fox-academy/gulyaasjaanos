@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+    height: 350px;
+    background-color: yellow;
+    display: flex;
+    margin: 0 0 25px 0;
+    padding: 0;
+}
+.item {
+    width: 150px;
+    height: 150px;
+    background-color: purple;
+}
+ul {
+    list-style-type: none;
+}
+
+
+.e1.container {
+    align-items: center;
+}
+.e1.item {
+    margin-right: 10px;
+}
+
+
+.e2.container {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.e3.container {
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.e3.item {
+    margin-left: 10px;
+}

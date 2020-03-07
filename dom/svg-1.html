@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Document</title>
+      <style>
+          svg {
+              border: 1px solid black;
+          }
+      </style>
+  </head>
+  <body>
+    <h1>YAY, SVG!</h1>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+         <rect x="10" y="10" height="100" width="180" id="very-rectangle" style="stroke:#ff0000; stroke-width: 10; fill: #0dc453"/>
+    </svg>
+    <ul>
+        <li>The black border is coming from CSS</li>
+        <li>The red border is coming from SVG</li>
+    </ul>
+
+    <!-- You can work in the html or in a separate js file. Like:
+    <script>
+        1) Select the rectangle by the ID: "very-rectangle"
+        2) Change the rectangle's position to x:50, y:50
+        3) Change its fill to tomato
+    </script>
+    OR
+    <script src="svg-1.js"></script> -->
+
+    <script>
+        let rectangleElement = document.getElementsByTagName("rect")[0];
+        rectangleElement.setAttribute("x", "50");
+        rectangleElement.setAttribute("y", "50");
+        rectangleElement.style.fill = "tomato";
+    </script>
+
+
+  </body>
+</html>

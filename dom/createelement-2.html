@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: CreateElement</title>
+  </head>
+  <body>
+    <ul class="asteroids">
+      <li>The King</li>
+    </ul>
+
+    <!-- You can work in the html or in a separate js file. Like:
+    <script>
+      Remove the king from the list.
+      Fill the list based on the following list of objects.
+      Only add the asteroids to the list.
+      Each list item should have its category as a class and its content as text content. -->
+
+      
+    <!-- </script>
+    OR
+    <script src="createelement-2.js"></script> -->
+
+    <script>
+
+        const planetData = [
+                {
+                category: 'inhabited',
+                content: 'Foxes',
+                asteroid: true,
+                },
+                {
+                category: 'inhabited',
+                content: 'Whales and Rabbits',
+                asteroid: true,
+                },
+                {
+                category: 'uninhabited',
+                content: 'Baobabs and Roses',
+                asteroid: true,
+                },
+                {
+                category: 'inhabited',
+                content: 'Giant monsters',
+                asteroid: false,
+                },
+                {
+                category: 'inhabited',
+                content: 'Sheep',
+                asteroid: true,
+                },
+            ];
+
+        let liItems = document.getElementsByTagName("li");
+        liItems[0].remove();
+        liItems = [];
+        planetData.filter( e => e.asteroid ).forEach( e => {
+            liItems.push( document.createElement("li") );
+            liItems[liItems.length-1].classList.add( e.category );
+            liItems[liItems.length-1].textContent = e.content;
+        });
+        let ulElement = document.getElementsByTagName("ul")[0];
+        ulElement.append(...liItems);
+
+    </script>
+
+  </body>
+</html>

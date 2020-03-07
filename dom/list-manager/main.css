@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+    height: 90vh;
+}
+
+section {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    border: solid grey 1px;
+    margin: 5px;
+  }
+
+#middle {
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+ section select {
+    padding: 10px;
+    margin: -5px -20px -5px -5px;
+    border: none;
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 2rem;
+  }

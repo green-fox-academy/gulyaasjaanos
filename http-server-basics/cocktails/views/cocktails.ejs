@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cocktails</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Cocktails</h1>
+        <nav>
+            <a class= <%= (selected === "all")? "selected" : "none" %> href="/">all</a>
+            <% alcohols.forEach( alc => { %>
+                <a class= <%= (selected === alc)? "selected" : "none" %> href= <%= "/?alcohol="+alc %> > <%= alc %> </a>
+            <% }); %>
+        </nav>
+        <main>
+            <section></section>
+            <% cocktails.forEach( cocktail => { %>
+                <section>
+                    <header>
+                        <h2> <%= cocktail.name  %> <span> <%= (cocktail.isAlcoholic)? "" : "non-alcoholic" %> </span></h2>
+                        <p> <%= cocktail.contains  %> </p>
+                    </header>
+                    <h2> <%= cocktail.price+" HUF"  %> </h2>
+                </section>
+            <% }); %>
+        </main>
+    </div>
+</body>
+</html>

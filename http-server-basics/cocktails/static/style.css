@@ -1,0 +1,62 @@
+body {
+    background-color: #232323;
+}
+
+h1 {
+    font-weight: 800;
+    color: white;
+}
+
+nav {
+    margin: 0 0 25px 0;
+}
+a {
+    font-weight: 500;
+    text-decoration: none;
+    color: darkcyan;
+    padding: 10px;
+}
+a.selected,
+a:hover {
+    text-shadow: 2px 2px 5px gainsboro;
+    font-weight: 700;
+    color: cyan;
+}
+
+.wrapper {
+    width: 60vw;
+    height: 90 vh;
+    margin: 0 auto;
+}
+
+section {
+    display: flex;
+}
+
+header {
+    flex-grow: 2;
+    background-color: gainsboro;
+    margin: 2px;
+}
+section:nth-child(even) header {
+    background-color: grey;
+}
+header p {
+    padding: 0 5px;
+}
+header h2 {
+    padding: 0 5px;
+}
+header h2 span {
+    font-style: italic;
+}
+
+h2 {
+    flex-grow: 0;
+    background-color: gainsboro;
+    margin: 2px;
+    padding: 15px 5px;
+}
+section:nth-child(even) h2 {
+    background-color: grey;
+}

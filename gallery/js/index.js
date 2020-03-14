@@ -18,6 +18,7 @@ function fillImage(index) {
     imageBarElements[index].parentNode.classList.remove("unselected");
 }
 
+
 const imageBarElements = document.querySelectorAll(".imgbar img");
 const maxIndex = imageBarElements.length - 1;
 fillImage(imageIndex);

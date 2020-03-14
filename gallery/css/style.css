@@ -72,4 +72,5 @@ main {
     width: 7.5vw;
     height: 7.5vw;
     margin: 0 5px;
+    flex-shrink: 0;
 }

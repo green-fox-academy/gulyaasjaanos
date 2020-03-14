@@ -1,0 +1,75 @@
+body {
+    background-image: radial-gradient(#232323, gainsboro);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+main {
+    width: 75vw;
+    height: 60vh;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    background-color: rgba(200,200,200,0.5);
+}
+
+.arrow{
+    width: 3vw;
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    flex-shrink: 0;
+}
+.arrow p{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+.mainimg {
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+.mainimg img {
+    max-width: 100%;
+    height: 100%;  
+}
+.mainimg header {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(23,23,23,0.75);
+    color: white;
+    padding: 0 1em;
+}
+
+.imgbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 75vw;
+    margin: 2vh auto;
+    overflow: auto;
+    min-height: 8vw;
+}
+.imgbar img {
+    width: 7.5vw;
+    height: 7.5vw;
+    margin: 0 5px;
+}

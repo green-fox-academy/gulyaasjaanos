@@ -7,6 +7,15 @@ function fillImage(index) {
     h3.innerHTML = imageBarElements[index].alt;
     let p = document.querySelector(".mainimg header p");
     p.innerHTML = imageBarElements[index].getAttribute("data-pic");
+
+    imageBarElements.forEach( e => {
+        e.classList.remove("selected");
+        e.parentNode.classList.remove("selected");
+        e.parentNode.classList.add("unselected");
+    });
+    imageBarElements[index].classList.add("selected");
+    imageBarElements[index].parentNode.classList.add("selected");
+    imageBarElements[index].parentNode.classList.remove("unselected");
 }
 
 const imageBarElements = document.querySelectorAll(".imgbar img");

@@ -18,9 +18,10 @@ main {
     display: flex;
     align-items: stretch;
     background-color: rgba(200,200,200,0.5);
+    box-shadow: 5px 10px 8px #232323;
 }
 
-.arrow{
+.arrow {
     width: 3vw;
     background-color: gainsboro;
     display: flex;
@@ -29,6 +30,13 @@ main {
     align-items: stretch;
     flex-shrink: 0;
 }
+.arrow:hover {
+    background-color: #404040;
+    cursor: pointer;
+}
+.arrow:hover p{
+    color: gainsboro;
+}
 .arrow p{
     padding: 0;
     margin: 0;
@@ -36,6 +44,12 @@ main {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 900;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .mainimg {
@@ -71,6 +85,56 @@ main {
 .imgbar img {
     width: 7.5vw;
     height: 7.5vw;
-    margin: 0 5px;
+    margin: 0 5px 25px 5px;
     flex-shrink: 0;
+    box-shadow: 5px 5px 4px #232323;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.imgbar img:hover {
+    border: 7px solid gainsboro;
+}
+.imgbar img.selected{
+    border: 5px solid gainsboro;
+}
+
+.imgbar .img_wrapper {
+    position: relative;
+    padding-top: 40px;
+    z-index: 100;
+}
+
+.imgbar .img_wrapper.selected::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid gainsboro;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -10px);
+}
+.imgbar .img_wrapper.selected:hover::after {
+    content: "";
+    border: 0;
+}
+
+.imgbar .img_wrapper.unselected:hover::after {
+    content: "";
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid rgba(23,23,23,.5);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -10px);
+}
+.imgbar .img_wrapper.unselected:hover::before {
+    content: attr(data-pic);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -36px);
+    padding: 4px;
+    color: white;
+    background-color: rgba(23,23,23,.5);
 }

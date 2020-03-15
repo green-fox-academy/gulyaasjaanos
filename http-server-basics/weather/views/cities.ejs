@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="../css/cities.css">
+</head>
+<body>
+    <main>
+        <h1><%= forecast.city %></h1>
+        <div class="section-wrapper">
+            <% forecast.weather.forEach( e => { %>
+                <section>
+                    <img src= <%= `../asset/${e.icon}.png` %> alt= <%= e.icon %> >
+                    <h2> <%= e.temp %>°C </h2>
+                    <p> <%= e.message %>°C </p>
+                </section>
+            <% }); %>
+        </div>
+        <a href="/">&#9664 back</a> 
+    </main>
+</body>
+</html>

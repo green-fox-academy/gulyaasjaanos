@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <main>
+        <% forecasts.forEach( e => { %>
+            <section  onclick= <%= `location.href='/cities/?city=${e.city}'` %> >
+                <header>
+                    <h2> <%= e.city %> </h2>
+                    <p> <%= e.location %> </p>
+                </header>
+                <h1> <%= e.weather[0].temp %>°C</h1>
+                <img src= <%= `../asset/${e.weather[0].icon}.png` %> alt= <%= e.weather[0].icon %> >
+            </section>
+        <% }); %>
+    </main>
+</body>
+</html>

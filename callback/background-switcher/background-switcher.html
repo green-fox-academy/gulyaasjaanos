@@ -14,9 +14,19 @@
         background-size: cover;
         background-position: center center;
       }
+      #ball {
+          margin: 0;
+          padding: 0;
+          border: 10px orange solid;
+          top: 50%;
+          left: 50%;
+          position: fixed;
+          border-radius: 100%;
+      }
     </style>
   </head>
   <body>
+    <div id="ball"></div>
     <script>
       // 1: Create a function that updates the <body> elements background-image's css property
       // 2: The image value should be https://loremflickr.com/g/1280/800/hungary/
@@ -39,5 +49,6 @@
       }, 5000);
       
     </script>
+    <script src="./ball.js"></script>
   </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Random image background</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: black;
+        background-size: cover;
+        background-position: center center;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 1: Create a function that updates the <body> elements background-image's css property
+      // 2: The image value should be https://loremflickr.com/g/1280/800/hungary/
+      // 3: Make sure every time you refresh the image, you add a cachebuster
+      // WTF is a cachebuster?
+      // http://www.adopsinsider.com/ad-ops-basics/what-is-a-cache-buster-and-how-does-it-work/
+
+      // 4: Create a timer function that refreshes the background every 5 seconds
+      const switchBackground = (imageURL) => {
+        const background = document.getElementsByTagName("body")[0];
+        background.style.backgroundImage = `url('${imageURL}')`;
+      }
+
+      const imageURL = "https://loremflickr.com/g/1280/800/hungary/";
+
+      switchBackground(imageURL);
+      const timer = setInterval( () => {
+        switchBackground(imageURL);
+        location.reload(true);
+      }, 5000);
+      
+    </script>
+  </body>
+</html>

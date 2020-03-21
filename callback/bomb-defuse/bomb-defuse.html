@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bomb defuse</title>
+</head>
+<body>
+  <div class="display">10</div>
+  <button>Defuse</button>
+</body>
+  <script>
+    const display = document.getElementsByClassName("display")[0];
+    const button = document.querySelector("button");
+    let time = 10;
+    let timer = setInterval( () => {
+        time--;
+        display.innerHTML = time;
+        if ( time === 0 ) {
+            display.innerHTML = "BOOM";
+            clearInterval(timer);
+            button.setAttribute("disabled", true);
+        }
+    }, 1000);
+    button.addEventListener("click", () => {
+        display.innerHTML = "Bomb defused.";
+        clearInterval(timer);
+    });
+  </script>
+</html>

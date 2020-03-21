@@ -27,7 +27,8 @@
       // 4: Create a timer function that refreshes the background every 5 seconds
       const switchBackground = (imageURL) => {
         const background = document.getElementsByTagName("body")[0];
-        background.style.backgroundImage = `url('${imageURL}')`;
+        let ord = Math.random()*10000000000000000;
+        background.style.backgroundImage = `url('${imageURL}?ord=${ord}')`;
       }
 
       const imageURL = "https://loremflickr.com/g/1280/800/hungary/";
@@ -35,7 +36,6 @@
       switchBackground(imageURL);
       const timer = setInterval( () => {
         switchBackground(imageURL);
-        location.reload(true);
       }, 5000);
       
     </script>

@@ -1,0 +1,29 @@
+body {
+    background: black;
+}
+main {
+    width: 75vw;
+    height: 80vh;
+    margin: 5vh auto;
+    display: flex;
+    justify-content: center;
+}
+nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+nav img {
+    cursor: pointer;
+    width: 5vw;
+    height: 5vw;
+}
+section {
+    flex-grow: 0;
+}
+section img {
+    margin-top: 5vh;
+    width: 60vw;
+    height: auto;
+}

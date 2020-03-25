@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xhrtest</title>
+</head>
+<body>
+    <main></main>
+    <script>
+        let request = new XMLHttpRequest();
+        const main = document.getElementsByTagName("main")[0];
+        request.onload = () => {
+            let res = JSON.parse(request.response);
+            console.log(res);
+            main.innerHTML = res[0].thumbnailUrl;
+        };
+        request.open("GET", "https://jsonplaceholder.typicode.com/photos");
+        request.send();
+    </script>
+</body>
+</html>

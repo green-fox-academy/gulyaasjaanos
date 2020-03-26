@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 95vh;
+}
+main {
+    background-color: darkgray;
+    min-width: 50vw;
+    min-height: 50vh;
+}
+
+nav {
+    margin: 2em 0 0 2em;
+    display: flex;
+}
+.wrapper {
+    display: flex;
+}
+.people li {
+    cursor: pointer;
+}
+.people li:hover{
+    background-color: darkblue;
+    color: white;
+}

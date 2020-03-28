@@ -50,6 +50,19 @@ app.post("/sith/", (request, response) => {
     response.send(output);
 });
 
+app.post("/translate/", (request, response) => {
+    let output = {
+        "error": "I can't translate that!"
+    }
+    if (request.body.text && request.body.lang) {
+        output = {
+            "translated": translateThis(request.body.text, request.body.lang),
+            "lang": "teve"
+        }
+    }
+    response.send(output);
+});
+
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`)
 });
@@ -90,9 +103,6 @@ const randomYoda = () => {
     return (d === 1)? cleverness[n1] : cleverness[n1] + " " + cleverness[n2];
 };
     
-
-
-
 function sithText(text) {
     let textArray = text.split(". ");
     let newArray = textArray.map( (e) => {
@@ -107,3 +117,32 @@ function sithText(text) {
     newArray += " " + randomYoda();
     return newArray;
 };
+
+
+function translateThis(text, lang){
+    let teve = text;
+    const vowelArray = ['a', 'u', 'o', 'e', 'i', 'á', 'é', 'ö', 'ü', 'ó', 'ő', 'ú', 'ű', 'í',
+                        'A', 'U', 'O', 'E', 'I', 'Á', 'É', 'Ö', 'Ü', 'Ó', 'Ő', 'Ú', 'Ű', 'Í']
+    let vowels = teve.split('').filter( (e) => vowelArray.indexOf(e) >= 0);
+    let vowelsObj = vowels.reduce( (a,e) => {
+      a[e] = (e in a)? a[e]+1 : 1;
+      return a;
+    },{});
+
+    let changer = (lang === "hu")? "v" : "idig";
+
+    Object.keys(vowelsObj).forEach( (e) => {
+        teve = teve.split(e).join(`${e}${changer}${e}`);
+    });
+    teve = teve.split(" ");
+    let lowered = teve.map( (e) => {
+            let out = "";
+            for (let i = 0; i < e.length; i++) {
+                out += (i !== 0)? e[i].toLowerCase() : e[i]
+            }
+            return out;
+    });
+    teve = lowered.join(" ");
+
+    return teve;
+  }

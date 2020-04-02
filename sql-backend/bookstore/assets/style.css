@@ -2,3 +2,24 @@ h3 {
     margin: 0;
     padding-left: 1em;
 }
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+      background-color: #444444;
+      color: white;
+      font-weight: 800;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

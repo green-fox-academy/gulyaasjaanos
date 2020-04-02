@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+    <h2> <%= search.search %> </h2>
+
+    <table>
+        <tr>
+          <% for (const property in rows[0]) { %>
+            <th> <%= property %> </th>
+          <% }; %>
+        </tr>
+        <% rows.forEach( row => { %>
+            <tr>
+                <% for (const property in row) { %>
+                    <td> <%= row[property] %> </td>
+                <% }; %>
+            </tr>
+        <% }); %>
+    </table>
+
+</body>
+</html>

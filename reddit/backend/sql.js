@@ -122,25 +122,49 @@ const modifyPost = (id, params, callBack) => {
     }
     if (rows.length === 0) {
       callBack(rows);
-    }
-    let mod = rows[0];
-    mod.score = (params.score)? mod.score + params.score : mod.score;
-    mod.title = (params.title)? params.title : mod.title;
-    let query = "UPDATE posts SET score=?, title=? WHERE id=?";
-    conn.query(query, [mod.score,mod.title,mod.id], (err, rows) => {
-      if (err) {
-        console.error(`Cannot retrieve data: ${err.toString()}`);
-        res.sendStatus(500);
-        callBack(null);
-      } else if (params.score) {
-        modifyVote(id, params.voter, mod.vote, (vote) => {
-          mod.vote += vote;
+    } else {
+      let mod = rows[0];
+      mod.score = (params.score)? mod.score + params.score : mod.score;
+      mod.title = (params.title)? params.title : mod.title;
+      let query = "UPDATE posts SET score=?, title=? WHERE id=?";
+      conn.query(query, [mod.score,mod.title,mod.id], (err, rows) => {
+        if (err) {
+          console.error(`Cannot retrieve data: ${err.toString()}`);
+          res.sendStatus(500);
+          callBack(null);
+        } else if (params.score) {
+          modifyVote(id, params.voter, mod.vote, (vote) => {
+            mod.vote += vote;
+            callBack(mod);
+          });
+        } else {
           callBack(mod);
-        });
-      } else {
-        callBack(mod);
-      }
-    });
+        }
+      });
+    }
+  });
+};
+
+const deletePost = (id, callBack) => {
+  let query = "SELECT * FROM posts_view WHERE id=?";
+  conn.query(query, [id], (err, rows) => {
+    if (err) {
+      console.error(`Cannot retrieve data: ${err.toString()}`);
+      res.sendStatus(500);
+      callBack(null);
+    } if (rows.length === 0) {
+      callBack(rows);
+    } else {
+      let query = "DELETE FROM posts WHERE id=?";
+      conn.query(query, [id], (err, res) => {
+        if (err) {
+          console.error(`Cannot retrieve data: ${err.toString()}`);
+          res.sendStatus(500);
+          callBack(null);
+        }
+        callBack(rows);
+      });
+    }
   });
 };
 
@@ -148,5 +172,6 @@ module.exports = {
     conn,
     createPost,
     readPosts,
-    modifyPost
+    modifyPost,
+    deletePost
 };

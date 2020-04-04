@@ -72,6 +72,32 @@ app.put("/posts/:param/downvote", (req,res) => {
   }
 });
 
+app.put("/posts/:param", (req,res) => {
+  const regex = /^[1-9]{1,}$/i;
+  if ( regex.test(req.params.param) ) {
+    sqlconn.modifyPost(req.params.param, {title: req.body.title}, (rows) => {
+      res.send(rows);
+    });
+  } else {
+    res.send({
+      error: "What id would you like to modify?"
+    });
+  }
+});
+
+app.delete("/posts/:param", (req,res) => {
+  const regex = /^[1-9]{1,}$/i;
+  if ( regex.test(req.params.param) ) {
+    sqlconn.deletePost(req.params.param, (rows) => {
+      res.send(rows);
+    });
+  } else {
+    res.send({
+      error: "What id would you like to delete?"
+    });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

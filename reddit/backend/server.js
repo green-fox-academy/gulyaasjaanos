@@ -46,6 +46,39 @@ app.post("/posts", (req,res) => {
   });
 });
 
+app.put("/posts/:param/upvote", (req,res) => {
+  const regex = /^[1-9]{1,}$/i;
+  if ( regex.test(req.params.param) ) {
+    let response = {
+      success: req.params.param
+    }
+    sqlconn.modifyPost(req.params.param, {score: 1}, (rows) => {
+      res.send(rows);
+    });
+  } else {
+    res.send({
+      error: "What id would you like to upvote?"
+    });
+  }
+});
+
+app.put("/posts/:param/downvote", (req,res) => {
+  const regex = /^[1-9]{1,}$/i;
+  if ( regex.test(req.params.param) ) {
+    let response = {
+      success: req.params.param
+    }
+    sqlconn.modifyPost(req.params.param, {score: -1}, (rows) => {
+      res.send(rows);
+    });
+  } else {
+    res.send({
+      error: "What id would you like to downvote?"
+    });
+  }
+});
+
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });

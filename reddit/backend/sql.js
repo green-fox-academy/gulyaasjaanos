@@ -78,8 +78,35 @@ const readPosts = (callBack) => {
     });
 }
 
+const modifyPost = (id, params, callBack) => {
+  let query = "SELECT * FROM posts WHERE id=?";
+  conn.query(query, [id], (err, rows) => {
+    if (err) {
+      console.error(`Cannot retrieve data: ${err.toString()}`);
+      res.sendStatus(500);
+      callBack(null);
+    }
+    if (rows.length === 0) {
+      callBack(rows);
+    }
+    let mod = rows[0];
+    mod.score = (params.score)? mod.score + params.score : mod.score;
+    mod.title = (params.title)? params.title : mod.title;
+    let query = "UPDATE posts SET score=?, title=? WHERE id=?";
+    conn.query(query, [mod.score,mod.title,mod.id], (err, rows) => {
+      if (err) {
+        console.error(`Cannot retrieve data: ${err.toString()}`);
+        res.sendStatus(500);
+        callBack(null);
+      }
+      callBack(mod);
+    });
+  });
+}
+
 module.exports = {
     conn,
     createPost,
-    readPosts
+    readPosts,
+    modifyPost
 };

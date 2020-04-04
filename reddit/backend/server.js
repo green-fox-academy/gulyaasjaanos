@@ -12,6 +12,19 @@ app.get("/", (req,res) => {
   res.send("working");
 });
 
+app.get("/posts", (req,res) => {
+  sqlconn.readPosts( (posts) => {
+    let response = { posts: []};
+    for (const post of posts) {
+      let entry = {};
+      for (let [key, value] of Object.entries(post)) {
+        entry[key] = value;
+      }
+      response.posts.push(entry);
+    };
+    res.send(response);
+  });
+});
 
 app.post("/posts", (req,res) => {
   const date = properDate(new Date);
@@ -27,9 +40,9 @@ app.post("/posts", (req,res) => {
   };
   sqlconn.createPost(toRecord, (id) => {
     toRecord.id = id;
+    toRecord.owner = req.headers.username;
     toRecord.timestamp = timestamp;
-    console.log(toRecord);
-    res.send("posted");
+    res.send(toRecord);
   });
 });
 

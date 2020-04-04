@@ -53,7 +53,6 @@ const createPost = (record, callBack) => {
   findUser(record.owner, (id) => {
     let query = "INSERT INTO posts (title,url,timestamp,score,owner_id,vote) VALUES (?,?,?,?,?,?)";
     record.owner = id;
-    console.log(record.timestamp);
     let params = Object.values(record);
     params.shift();
     conn.query(query, params, (err, res) => {
@@ -67,7 +66,20 @@ const createPost = (record, callBack) => {
   });
 }
 
+const readPosts = (callBack) => {
+    let query = "SELECT * FROM posts";
+    conn.query(query, (err, rows) => {
+      if (err) {
+        console.error(`Cannot write data: ${err.toString()}`);
+        res.sendStatus(500);
+        callBack(null);
+      }
+      callBack(rows);
+    });
+}
+
 module.exports = {
     conn,
-    createPost
+    createPost,
+    readPosts
 };

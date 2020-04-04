@@ -49,10 +49,7 @@ app.post("/posts", (req,res) => {
 app.put("/posts/:param/upvote", (req,res) => {
   const regex = /^[1-9]{1,}$/i;
   if ( regex.test(req.params.param) ) {
-    let response = {
-      success: req.params.param
-    }
-    sqlconn.modifyPost(req.params.param, {score: 1}, (rows) => {
+    sqlconn.modifyPost(req.params.param, {score: 1, voter: req.headers.username}, (rows) => {
       res.send(rows);
     });
   } else {
@@ -65,10 +62,7 @@ app.put("/posts/:param/upvote", (req,res) => {
 app.put("/posts/:param/downvote", (req,res) => {
   const regex = /^[1-9]{1,}$/i;
   if ( regex.test(req.params.param) ) {
-    let response = {
-      success: req.params.param
-    }
-    sqlconn.modifyPost(req.params.param, {score: -1}, (rows) => {
+    sqlconn.modifyPost(req.params.param, {score: -1, voter: req.headers.username}, (rows) => {
       res.send(rows);
     });
   } else {

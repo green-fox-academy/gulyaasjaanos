@@ -64,10 +64,10 @@ const createPost = (record, callBack) => {
       callBack(res.insertId);
     });
   });
-}
+};
 
 const readPosts = (callBack) => {
-    let query = "SELECT * FROM posts";
+    let query = "SELECT * FROM posts_view";
     conn.query(query, (err, rows) => {
       if (err) {
         console.error(`Cannot write data: ${err.toString()}`);
@@ -76,10 +76,44 @@ const readPosts = (callBack) => {
       }
       callBack(rows);
     });
-}
+};
+
+const modifyVote = (id, voter, votes, callBack) => {
+  findUser(voter, (voter_id) => {
+      let query = "SELECT * FROM post_voter WHERE post_id=? AND voter_id=?";
+      conn.query(query, [id,voter_id], (err, rows) => {
+        if (err) {
+          console.error(`Cannot retrieve data: ${err.toString()}`);
+          res.sendStatus(500);
+          callBack(null);
+        } else if (rows.length !== 0) {
+          callBack(0);
+        } else {
+          let query = "INSERT INTO post_voter (post_id,voter_id) VALUES(?,?)";
+          conn.query(query, [id,voter_id], (err, rows) => {
+            if (err) {
+              console.error(`Cannot write data: ${err.toString()}`);
+              res.sendStatus(500);
+              callBack(null);
+            }
+            let query = "UPDATE posts SET vote=? WHERE id=?";
+            conn.query(query, [votes+1,id], (err, rows) => {
+              if (err) {
+                console.error(`Cannot write data: ${err.toString()}`);
+                res.sendStatus(500);
+                callBack(null);
+              }
+              callBack(1);
+            });
+          });
+        }
+      });
+  });
+};
+
 
 const modifyPost = (id, params, callBack) => {
-  let query = "SELECT * FROM posts WHERE id=?";
+  let query = "SELECT * FROM posts_view WHERE id=?";
   conn.query(query, [id], (err, rows) => {
     if (err) {
       console.error(`Cannot retrieve data: ${err.toString()}`);
@@ -98,11 +132,17 @@ const modifyPost = (id, params, callBack) => {
         console.error(`Cannot retrieve data: ${err.toString()}`);
         res.sendStatus(500);
         callBack(null);
+      } else if (params.score) {
+        modifyVote(id, params.voter, mod.vote, (vote) => {
+          mod.vote += vote;
+          callBack(mod);
+        });
+      } else {
+        callBack(mod);
       }
-      callBack(mod);
     });
   });
-}
+};
 
 module.exports = {
     conn,

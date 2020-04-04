@@ -4,7 +4,7 @@ const fs = require("fs");
 
 function IChangedMyMindAboutB() {
     let content = fs.readFileSync("./data.csv", "utf-8");
-    B = content; 
+    B = content;
 }
 
 const A = 2;

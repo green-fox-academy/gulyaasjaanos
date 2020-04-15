@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <h1>No last pressed key</h1>
+
+    <script>
+        window.addEventListener("keyup", (event) => {
+            console.log(event);
+            console.log(`Last pressed key code is: ${event.keyCode}`);
+        });
+    </script>
+  </body>
+</html>

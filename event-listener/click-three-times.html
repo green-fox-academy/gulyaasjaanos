@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <button>click me three times (after 5 seconds)</button>
+    <p class="result"></p>
+
+    <script>
+      const button = document.querySelector("button");
+      const result = document.querySelector(".result");
+
+      window.addEventListener('DOMContentLoaded', (event) => {
+        
+        const timer = setTimeout( () => {
+
+            let counter = 0;
+
+            button.addEventListener("click", () => {
+                counter++;
+                if (counter === 3) {
+                    result.innerHTML = `5 seconds elapsed and clicked 3 times`;
+                }
+            });
+
+        }, 5000);
+
+      });
+
+
+      
+    </script>
+  </body>
+</html>

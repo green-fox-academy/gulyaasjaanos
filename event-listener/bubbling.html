@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      nav {
+        text-align: center;
+      }
+      button {
+        margin: 16px;
+      }
+      .img-inspector {
+        margin: 0 auto;
+        width: 500px;
+        height: 320px;
+        border: 1px solid #3a3a3a;
+        background-image: url("https://picsum.photos/200/300");
+        background-size: 200%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <button data-action="move" data-direction="up">Up</button>
+      <button data-action="move" data-direction="down">Down</button>
+      <button data-action="move" data-direction="left">Left</button>
+      <button data-action="move" data-direction="right">Right</button>
+      <button data-action="zoom" data-direction="in">Zoom in</button>
+      <button data-action="zoom" data-direction="out">Zoom out</button>
+    </nav>
+    <div class="img-inspector">
+    </div>
+
+    <script>
+
+        function moveNav(movement) {
+            const move = {
+                up: [0,-10],
+                down: [0,10],
+                left: [-10,0],
+                right: [10,0]
+            };
+            const imgInspector = document.querySelector(".img-inspector");
+            const mY = (imgInspector.style.backgroundPositionY === "")? 0 : imgInspector.style.backgroundPositionY.replace("px", "");
+            const mX = (imgInspector.style.backgroundPositionX === "")? 0 : imgInspector.style.backgroundPositionX.replace("px", "");
+            imgInspector.style.backgroundPosition = `${mX * 1 + move[movement][0] * 1}px ${mY * 1 + move[movement][1] * 1}px`;
+        };
+
+        function zoomNav(zoom) {
+            const move = {
+                in: 20,
+                out: -20,
+            };
+            const imgInspector = document.querySelector(".img-inspector");
+            const mZ = (imgInspector.style.backgroundSize === "")? 0 : imgInspector.style.backgroundSize.replace("%", "");
+            imgInspector.style.backgroundSize = `${mZ * 1 + move[zoom] * 1}%`;
+        };
+
+        const nav = document.querySelector("nav");
+        nav.addEventListener("click", (event) => {
+            if (event.target.getAttribute("data-action") === "move") {
+                moveNav(event.target.getAttribute("data-direction"));
+            } else {
+                zoomNav(event.target.getAttribute("data-direction"));
+            }
+        });
+
+    </script>
+  </body>
+</html>

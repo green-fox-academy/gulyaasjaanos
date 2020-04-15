@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Workshop: EventListeners</title>
+  </head>
+  <body>
+    <button class="first">Click me</button>
+    <button class="second">Second Click me</button>
+    <script>
+        let button1 = document.querySelector("button.first");
+        button1.addEventListener("click", () => {
+            console.log(Date.now());
+            button1.setAttribute("disabled", true);
+        });
+
+        let button2 = document.querySelector("button.second");
+        const timestamp = () => {
+            console.log(Date.now());
+            button2.removeEventListener("click", timestamp);
+        };
+        button2.addEventListener("click", timestamp);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>button-disable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="#">
+        <h4>What is your favourite pet?</h4>
+        <input type="radio" name="fav" id="dog" value="dog">
+        <label for="dog">Dog</label>
+        <input type="radio" name="fav" id="cat" value="cat">
+        <label for="dog">Cat</label>
+        <input type="radio" name="fav" id="viktor" value="viktor">
+        <label for="victor">Viktor the goldfish</label>
+        <h4>Do you want to sign up for cat facts?</h4>
+        <input type="radio" name="signup" id="yes" value="yes">
+        <label for="yes">Yes</label>
+        <input type="radio" name="signup" id="no" value="no">
+        <label for="no">No</label>
+        <h4></h4>
+        <button type="submit" id="cats" class="hidden">I love cats</button>
+        <button type="submit" id="signup" class="hidden">Sign up</button>
+        <h4 class="output"></h4>
+    </form>
+    <script>
+        let fav = "";
+        let signup = "";
+        const favSelection = document.querySelectorAll('input[name="fav"]');
+        favSelection.forEach( (e) => e.addEventListener("click", () => {
+            fav = e.value;
+        }));
+        const signSelection = document.querySelectorAll('input[name="signup"]');
+        signSelection.forEach( (e) => e.addEventListener("click", () => {
+            signup = e.value;
+        }));
+        const radio = document.querySelectorAll('input[type="radio"]');
+
+        let message = "";
+        const output = document.querySelector(".output");
+        const catsBtn = document.getElementById("cats");
+        const signupBtn = document.getElementById("signup");
+        radio.forEach( (e) => e.addEventListener("click", () => {
+            signupBtn.classList.add("hidden");
+            catsBtn.classList.add("hidden");
+            output.innerHTML = "";
+            if ( fav === "dog" || fav === "cat" ) {
+                signupBtn.classList.remove("hidden");
+                message = "Thank you, you've successfully signed up for cat facts";
+            }
+            if ( signup === "yes" ) {
+                catsBtn.classList.remove("hidden");
+                message = "Thank you, you've successfully signed up for cat facts";
+            }
+            if ( fav === "viktor" && signup === "no" ) {
+                signupBtn.classList.remove("hidden");
+                message = "Sigh, we still added you to the cat facts list";
+            }
+        }));
+
+        catsBtn.addEventListener("click", (event)=> {
+            event.preventDefault();
+            output.innerHTML = message;
+        });
+        signupBtn.addEventListener("click", (event)=> {
+            event.preventDefault();
+            output.innerHTML = message;
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Selector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form action="#">
+            <h1>Movie Selector</h1>
+            <section>
+                <select id="genre">
+                    <option value="">Select a genre</option>
+                    <option value="sci-fi">Sci-fi</option>
+                    <option value="drama">Drama</option>
+                    <option value="comedy">Comedy</option>
+                </select>
+                <select id="movie">
+                    <option value="-">Select a movie</option>
+                    <option value="Moon" class="movie sci-fi">Moon</option>
+                    <option value="2001: A Space Odyssey" class="movie sci-fi">2001: A Space Odyssey</option>
+                    <option value="Contact" class="movie sci-fi">Contact</option>
+                    <option value="Darkest Hour" class="movie drama">Darkest Hour</option>
+                    <option value="There Will Be Blood" class="movie drama">There Will Be Blood</option>
+                    <option value="American Beauty" class="movie drama">American Beauty</option>
+                    <option value="Airplane!" class="movie comedy">Airplane!</option>
+                    <option value="Deadpool" class="movie comedy">Deadpool</option>
+                    <option value="Wayne's World" class="movie comedy">Wayne's World</option>
+                </select>
+            </section>
+            <p>The selected movie is: <span>-</span></p>
+        </form>
+    </div>
+    
+    <script>
+        const genreSelector = document.querySelector("#genre");
+        let genre = genreSelector.value;
+        const movieSelector = document.querySelector("#movie");
+        let movie = movieSelector.value;
+        const movies = document.querySelectorAll(".movie");
+        const output = document.querySelector("span");
+
+        genreSelector.addEventListener("input", () => {
+            genre = genreSelector.value;
+            movie = "-";
+            movieSelector.value = "-";
+            movies.forEach( (e) => {
+                if ( e.classList.contains(genre) ) {
+                    e.classList.remove("hidden");
+                } else if ( genre === "" ) {
+                    e.classList.remove("hidden");
+                } else {
+                    e.classList.add("hidden");
+                }
+            });
+        });
+
+        movieSelector.addEventListener("input", () => {
+            movie = movieSelector.value;
+            output.innerHTML = movie;
+        });
+
+
+    </script>
+</body>
+</html>

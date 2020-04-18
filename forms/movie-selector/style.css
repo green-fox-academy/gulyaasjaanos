@@ -1,0 +1,42 @@
+* {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+}
+
+select option.hidden {
+    display: none;
+}
+
+.wrapper {
+    background: lightpink;
+    width: 70vw;
+    height: 40vh;
+    margin: 15vh auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 20px 20px 0px purple;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+span {
+    color: purple;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+select {
+    height: 3.5rem;
+    border-radius: 5px;
+    border: 0px solid pink;
+}
+

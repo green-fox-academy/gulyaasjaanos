@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-wrapper">
+        <form action="#" method="get">
+            <h1>Subscribe to our newsletter</h1>
+            <label for="username">Full name</label>
+            <input type="text" name="username" minlength="3" required autofocus autocomplete="off" placeholder="name">
+            <label for="email">Email address</label>
+            <input type="email" name="email" required  placeholder="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+            <button type="submit">Sign up!</button>
+            <h5></h5>
+        </form>
+    </div>
+    <script>
+
+        const h5 = document.querySelector("h5");
+        const form = document.querySelector("form");
+        form.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+            const formData = new FormData( form );
+            let object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
+            let json = JSON.stringify(object);
+
+            let request = new XMLHttpRequest();
+            request.onload = () => {
+                let response = JSON.parse(request.response);
+                h5.innerHTML = response.message;
+            };
+            request.open("POST", "http://localhost:3000/signup");
+            request.setRequestHeader("content-type", "application/json");
+            request.send( json );
+
+        });
+
+        const submit = document.querySelector("button");
+        submit.addEventListener("click", () => {
+            h5.innerHTML = "";
+        });
+
+    </script>
+</body>
+</html>

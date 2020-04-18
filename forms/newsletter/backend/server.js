@@ -10,9 +10,10 @@ app.use( cors() );
 app.use( bodyParser.json() );
 
 
-app.post("/", (req,res) => {
-    console.log(req.body);
-    res.send({ok: "ok"});
+app.post("/signup/", (req,res) => {
+    res.send(
+        {   message: `Thanks ${req.body.username}, we will send updates to ${req.body.email}`    }
+        );
 });
 
 app.listen(PORT, () => {

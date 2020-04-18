@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-wrapper">
+        <form action="#" method="get">
+            <h1>Account login</h1>
+            <label for="username">username</label>
+            <input type="text" name="username" minlength="3" required autofocus autocomplete="off">
+            <label for="password">password</label>
+            <div class="password">
+                <input type="password" name="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+                <div class="showme"></div>
+            </div>
+            <h5>Forgot Password?</h5>
+            <h5 class="hidden">That's a pity.</h5>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        const forgot = document.querySelector("h5");
+        const pity = document.querySelectorAll("h5")[1];
+        forgot.addEventListener("click", () => {
+            pity.classList.toggle("hidden");
+        });
+        const showMe = document.querySelector(".showme");
+        const password = document.querySelector('input[type="password"]');
+        showMe.addEventListener("mousedown", () => {
+            password.type = "text";
+        });
+        showMe.addEventListener("mouseup", () => {
+            password.type = "password";
+        });
+    </script>
+</body>
+</html>

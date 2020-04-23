@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "promise-it-wont-hurt": "^1.1.3"
+    "promise-it-wont-hurt": "^1.1.3",
+    "q-io": "^1.13.6"
   }
 }

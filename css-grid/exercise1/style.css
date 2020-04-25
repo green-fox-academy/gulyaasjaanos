@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+main {
+    width: 100%;
+    height: 25vh;
+    background-color: rgb(180, 0, 180);
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    color: #fff;
+    font-weight: 500;
+    font-size: 2em;
+    font-family: arial;
+    text-align: center;
+    grid-gap: 10px;
+    border: 10px solid rgb(180, 0, 180);
+}
+.left,.right,.main {
+    background: rgb(221, 221, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main {
+    background: rgb(0, 255, 0);
+}

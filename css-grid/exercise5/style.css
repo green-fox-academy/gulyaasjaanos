@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: #eee;
+}
+.field {
+    width: 100%;
+    height: 95vh;
+    margin: 0 auto;
+    background: #232323;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        "corner1 top1 top2 top3 top4 top5 corner2"
+        "left1 void void void void void right1"
+        "left2 void void void void void right2"
+        "left3 void void void void void right3"
+        "left4 void void void void void right4"
+        "corner4 bottom1 bottom2 bottom3 bottom4 bottom5 corner3";
+    grid-gap: 2px;
+    border: 3px solid #232323;
+}
+
+div {
+    background: yellow;
+}
+.void {
+    background: lime;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.purple {
+    background: purple;
+    width: 50%;
+    height: 50%;
+    margin-right: 25px;
+    color: #eee;
+    font-family: arial;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.texted {
+    color: #232323;
+    font-family: arial;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.texted span {
+    transform: rotate(-45deg);
+}
+
+.left {
+    box-shadow: 10px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.right {
+    box-shadow: -10px 0px 10px 0px rgba(0,0,0,0.5);
+}
+.top {
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5);
+}
+.bottom {
+    box-shadow: 0px -10px 10px 0px rgba(0,0,0,0.5);
+}
+
+
+
+
+
+.top.n1 {
+    grid-area: top1;
+}
+.top.n2 {
+    grid-area: top2;
+}
+.top.n3 {
+    grid-area: top3;
+}
+.top.n4 {
+    grid-area: top4;
+}
+.top.n5 {
+    grid-area: top5;
+}
+.bottom.n1 {
+    grid-area: bottom1;
+}
+.bottom.n2 {
+    grid-area: bottom2;
+}
+.bottom.n3 {
+    grid-area: bottom3;
+}
+.bottom.n4 {
+    grid-area: bottom4;
+}
+.bottom.n5 {
+    grid-area: bottom5;
+}
+.left.n1 {
+    grid-area: left1;
+}
+.left.n2 {
+    grid-area: left2;
+}
+.left.n3 {
+    grid-area: left3;
+}
+.left.n4 {
+    grid-area: left4;
+}
+.right.n1 {
+    grid-area: right1;
+}
+.right.n2 {
+    grid-area: right2;
+}
+.right.n3 {
+    grid-area: right3;
+}
+.right.n4 {
+    grid-area: right4;
+}
+.corner.n1 {
+    grid-area: corner1;
+}
+.corner.n2 {
+    grid-area: corner2;
+}
+.corner.n3 {
+    grid-area: corner3;
+}
+.corner.n4 {
+    grid-area: corner4;
+}
+.void {
+    grid-area: void;
+}

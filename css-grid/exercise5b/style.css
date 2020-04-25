@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background: #eee;
+}
+.field {
+    width: 100%;
+    height: 95vh;
+    margin: 0 auto;
+    background: #232323;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        "corner1 . . . . . ."
+        ". void void void void void ."
+        ". void void void void void ."
+        ". void void void void void ."
+        ". void void void void void ."
+        ". . . . . . corner2";
+    grid-gap: 2px;
+    border: 3px solid #232323;
+}
+
+div {
+    background: yellow;
+}
+.void {
+    grid-area: void;
+    background: lime;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.75);
+}
+.purple {
+    background: purple;
+    width: 50%;
+    height: 50%;
+    margin-right: 25px;
+    color: #eee;
+    font-family: arial;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.n1 {
+    grid-area: corner1;
+}
+.n2 {
+    grid-area: corner2;
+}
+.texted {
+    color: #232323;
+    font-family: arial;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.texted span {
+    transform: rotate(-45deg);
+}
+
+

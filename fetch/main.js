@@ -25,11 +25,9 @@ const addToSection = (text) => {
 
 BTN.addEventListener("click", () => {
     findNerdyChuck( addToSection );
-});
+});*/
 
-*/
-
-const findNerdyChuck = () => {
+/*const findNerdyChuck = () => {
     return new Promise ( (resolve) => {
         fetch(URL)
         .then( (response) => response.json() )
@@ -41,8 +39,38 @@ const findNerdyChuck = () => {
             }
         });
     });
+};*/
+
+const fetchChuck = () => {
+    return new Promise( (resolve) => {
+        fetch(URL)
+        .then( (response) => response.json() )
+        .then( (json) => {
+            resolve ({
+                joketext: json.value.joke,
+                category: json.value.categories
+            });
+        });
+    });
+};
+
+async function findNerdyChuck() {
+        let found = false;
+        let text = "";
+        do {
+            const joke = await fetchChuck();
+            if ( joke.category.includes("nerdy") ) {
+                found = true;
+                text = joke.joketext;
+            }
+        } while (!found);
+        addToSection(text);
 };
 
 BTN.addEventListener("click", () => {
-    findNerdyChuck().then(addToSection);
+    findNerdyChuck();
 });
+
+/*BTN.addEventListener("click", () => {
+    findNerdyChuck().then(addToSection);
+});*/

@@ -1,0 +1,51 @@
+body {
+    background: blue;
+    font-family: arial;
+    font-size: 2em;
+    color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    margin-top: 8vh;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 80vw;
+    height: 80vh;
+    text-align: left;
+}
+
+th {
+    border-bottom: 4px solid grey;
+    background: #232323;
+    color: rgb(233, 230, 230);
+} 
+
+tr {
+    border-bottom: 2px solid grey;
+    background: rgb(192, 192, 192);
+}
+
+tr:nth-child(2n) {
+    background: rgb(231, 230, 230);
+}
+
+th:nth-child(2n),
+td:nth-child(2n) {
+    border-left: 2px solid grey;
+}
+
+tr:last-child {
+    border-bottom: none;
+}
+
+td, th {
+    padding-left: 1em;
+}
+
+td:nth-child(2n)::before {
+    content: attr(data-currency);
+}

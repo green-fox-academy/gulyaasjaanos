@@ -1,0 +1,99 @@
+* {
+    box-sizing: content-box;
+}
+
+body {
+    background: #313841;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+button {
+    margin: 0.5em;
+    height: 1.8em;
+    width: 1.8em;
+    font-weight: 800;
+    font-size: 2em;
+    border: none;
+    background: #232323;
+    color: #eee;
+    position: relative;
+    cursor: pointer;
+}
+button::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0.33em 0 0.33em 0.5em;
+    border-color: transparent transparent transparent #232323;
+    position: absolute;
+    top: 33%;
+    left: 100%;
+    opacity: 0;
+}
+
+button[class="delete"] {
+    color: red;
+}
+button[class="delete"]::before {
+    content: "";
+    height: 100%;
+    position: absolute;
+    background: #f34541;
+    color: #eee;
+    top: 0;
+    left: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0%;
+    opacity: 0;
+    transition: width .35s ease-in-out, opacity .5s ease-in-out;
+}
+button[class="delete"]:hover::before {
+    width: 250%;
+    opacity: 1;
+    content: "Delete";
+}
+button[class="delete"]:hover::after {
+    opacity: 1;
+}
+
+
+button[class="sure"] {
+    color: green;
+}
+button[class="sure"]::before {
+    content: "";
+    height: 100%;
+    width: 250%;
+    position: absolute;
+    background: #38ba7d;
+    color: #eee;
+    top: 0;
+    left: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0%;
+    opacity: 0;
+    transition: width .35s ease-in-out, opacity .5s ease-in-out;
+}
+button[class="sure"]:hover::before {
+    width: 250%;
+    opacity: 1;
+    content: "Sure?";
+}
+button[class="sure"]:hover::after {
+    opacity: 1;
+}
+
+.invisible {
+    display: none;
+}

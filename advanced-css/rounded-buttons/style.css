@@ -1,0 +1,82 @@
+body {
+    background: #2f3060;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 95vh;
+}
+
+.wrapper {
+    max-width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+button {
+    margin: 1em auto;
+    width: 6em;
+    height: 2.5em;
+    color: rgba(200, 200, 200, 0.8);
+    font-weight: 300;
+    font-family: arial;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+button::after {
+    content: attr(class);
+    width: 100%;
+    height: 50%;
+    top: 25%;
+    left: 0;
+    position: absolute;
+    z-index: 100;
+}
+button::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+button:hover::before {
+    background: rgba(255,255,255,0.2);
+}
+button:active::before {
+    background: rgba(255,255,255,0.0);
+}
+
+.Blue {
+    background: #3d5a9a;
+    box-shadow: 0px 7px 0px 0px #365088;
+}
+.Green {
+    background: #1aa955;
+    box-shadow: 0px 7px 0px 0px #158f48;
+}
+.Red {
+    background: #d44332;
+    box-shadow: 0px 7px 0px 0px #b8392b;
+}
+.Light {
+    background: #01aeed;
+    box-shadow: 0px 7px 0px 0px #01a0da;
+}
+.Black {
+    background: #27292a;
+    box-shadow: 0px 7px 0px 0px #151616;
+}
+.White {
+    background: #e7ebf6;
+    box-shadow: 0px 7px 0px 0px #b8bbc5;
+}

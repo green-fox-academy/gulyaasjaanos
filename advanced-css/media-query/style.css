@@ -1,0 +1,38 @@
+body {
+    width: 95vw;
+    height: 95vh;
+    background: #eee;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.green {
+    background: #51d400;
+    flex-grow: 1;
+}
+
+.yellow {
+    background: #ffd62a;
+    flex-grow: 2;
+}
+
+.pink {
+    background: #b02aff;
+    flex-grow: 1;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}

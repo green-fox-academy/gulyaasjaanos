@@ -6,8 +6,8 @@ const aliasField = document.querySelector('input[id="alias"]');
 const submitBtn = document.querySelector("button");
 const formElement = document.querySelector("form");
 
-formElement.addEventListener("click", (event) => {
-    if( event.target === submitBtn ) {
+formElement.addEventListener("submit", (event) => {
+    
         event.preventDefault();
         console.log(formElement["url"].value);
         const toJson = { url: formElement["url"].value, alias: formElement["alias"].value };
@@ -29,5 +29,5 @@ formElement.addEventListener("click", (event) => {
                 formElement["alias"].value = "";
             }
         });
-    }
+    
 });

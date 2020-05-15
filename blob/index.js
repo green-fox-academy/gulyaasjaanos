@@ -33,10 +33,9 @@ app.get("/api/links", (req,res) => {
 app.get("/a/:alias", (req,res) => {
     requestHandler.getALink(req.params.alias)
         .then( (response) => {
-            //res.statusCode = 302;
-            //res.setHeader("Location", response);
-            //res.end();
-            res.send(response);
+            res.statusCode = 302;
+            res.setHeader("Location", response);
+            res.end();
         })
         .catch( (error) => {
             res.status(error).send("not found");

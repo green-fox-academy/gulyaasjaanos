@@ -1,0 +1,64 @@
+body {
+    background: rgb(211, 211, 211)
+}
+
+main {
+    width: 75vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+article {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 0.4em;
+    align-items: flex-start;
+    justify-content: flex-end;
+    background: #eee;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
+
+h2 span {
+    font-size: 0.65em;
+    font-weight: 400;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+article > nav {
+    margin: 0.5em 1em;
+}
+article > nav .vote_clickable {
+    cursor: pointer;
+}
+
+section nav a:first-child {
+    margin-right: 1em;
+}
+section nav a {
+    color: lightgrey;
+}
+section nav .modify_clickable {
+    color: darkblue;
+    cursor: pointer;
+}
+section nav .remove_clickable {
+    color: darkblue;
+    cursor: pointer;
+}

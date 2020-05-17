@@ -43,6 +43,46 @@ app.put("/posts/:id/downvote", (req,res) => {
         });
 });
 
+app.post("/post/:id", (req,res) => {
+    SQL.getSinglePost(req.body.user,req.params.id)
+        .then( (response) => {
+            res.send(response);
+        })
+        .catch( (error) => {
+            res.status(error).send({error: "Something went really wrong."});
+        });
+});
+
+app.put("/post/:id", (req,res) => {
+    SQL.updatePost(req.body.user,req.params.id,req.body.title,req.body.url)
+        .then( (response) => {
+            res.send(response);
+        })
+        .catch( (error) => {
+            res.status(error).send({error: "Something went really wrong."});
+        });
+});
+
+app.delete("/post/:id", (req,res) => {
+    SQL.deletePost(req.body.user,req.params.id)
+        .then( (response) => {
+            res.send(response);
+        })
+        .catch( (error) => {
+            res.status(error).send({error: "Something went really wrong."});
+        });
+});
+
+app.post("/postit", (req,res) => {
+    SQL.postPost(req.body.user,req.body.title,req.body.url)
+        .then( (response) => {
+            res.send(response);
+        })
+        .catch( (error) => {
+            res.status(error).send({error: "Something went really wrong."});
+        });
+});
+
 app.listen(8080, () => {
     console.log(`server running at port 8080`);
 });

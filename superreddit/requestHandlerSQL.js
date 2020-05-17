@@ -87,6 +87,8 @@ const getUserId = (user) => {
             , [user], (error, results) => {
             if (error) {
                 reject(400);
+            } else if (results.length === 0) {
+                reject(403);
             } else {
                 resolve(results[0]);
             }
@@ -108,7 +110,67 @@ const getSinglePost = (user,id) => {
     });
 };
 
+const updatePost = async (user,id,title,url) => {
+    const userId = await getUserId(user)
+        .then( (result) => result.id);
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            'UPDATE posts SET title = ?, url = ? WHERE id = ? AND owner_id = ?;'
+            , [title, url, id, userId], (error, results) => {
+            if (error) {
+                reject(400);
+            } else if (results.affectedRows === 0) {
+                reject(401);
+            } else {
+                getSinglePost(user,id)
+                    .then( (results) => resolve(results) );
+            }
+        });
+    });
+};
+
+const deletePost = async (user,id) => {
+    const userId = await getUserId(user)
+        .then( (result) => result.id);
+    const backData = await getSinglePost(user,id)
+        .then( (results) => results );
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            'DELETE FROM posts WHERE id = ? AND owner_id = ?;'
+            , [id, userId], (error, results) => {
+            if (error) {
+                reject(400);
+            } else if (results.affectedRows === 0) {
+                reject(401);
+            } else {
+                resolve(backData);
+            }
+        });
+    });
+};
+
+const postPost = async (user,title,url) => {
+    const userId = await getUserId(user)
+        .then( (result) => result.id);
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            'INSERT INTO posts (title,url,score,owner_id) VALUES (?,?,0,?);'
+            , [title, url, userId], (error, results) => {
+            if (error) {
+                reject(400);
+            } else {
+                getSinglePost(user,results.insertId)
+                    .then( (results) => resolve(results) );
+            }
+        });
+    });
+};
+
 module.exports = {
     getPosts,
-    putVote
+    putVote,
+    getSinglePost,
+    updatePost,
+    deletePost,
+    postPost
 }

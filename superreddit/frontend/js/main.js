@@ -1,6 +1,8 @@
 "use strict";
 
 const $main = document.querySelector("main");
+const $newpost = document.querySelector("button");
+const $form = document.querySelector("form");
 
 const user = "anonymus";
 
@@ -37,10 +39,12 @@ const renderList = (listelEments) => {
                     $section.append($nav);
                         const $a1 = document.createElement("a");
                             $a1.innerHTML = "modify";
+                            if (e.owner === user) $a1.href = `http://localhost:8080/edit.html?id=${e.id}`;
                             if (e.owner === user) $a1.classList.add("modify_clickable");
                             $nav.append($a1);
                         const $a2 = document.createElement("a");
                             $a2.innerHTML = "remove";
+                            if (e.owner === user) $a2.href = `http://localhost:8080/delete.html?id=${e.id}`;
                             if (e.owner === user) $a2.classList.add("remove_clickable");
                             $nav.append($a2);
             const $votenav = document.createElement("nav");
@@ -91,4 +95,9 @@ $main.addEventListener("click", (event) => {
             })
             .catch( (error) => console.log(error) );
     }
+});
+
+$form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    window.location.href = "http://localhost:8080/post.html"
 });

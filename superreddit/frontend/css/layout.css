@@ -1,0 +1,76 @@
+
+* {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(211, 211, 211);
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 25vh auto;
+    grid-template-areas: 
+        "header header"
+        "main aside";
+    display: grid;
+    grid-gap: 0.5em;
+}
+
+header {
+    grid-area: header;
+    background: #232323;
+    background-image: url("../assets/HD-Flat-Design-Photos.jpg");
+    background-repeat: no-repeat;
+    background-position: 10% 20%;
+    background-size: cover; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #eee;
+}
+
+main {
+    grid-area: main;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+aside {
+    grid-area: aside;
+}
+
+button {
+    margin: 0.5em 0.5em;
+    background: #5e92e7;
+    border-radius: 5;
+    padding: 0.5em 1em;
+    color: #eee;
+    font-size: 1.5em;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+form {
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: flex-end;
+}
+label {
+    align-self: flex-start;
+    padding: 0.5em 1em;
+    color: #232323;
+    font-weight: 900;
+}
+input,
+textarea {
+    margin: 0.5em auto;
+    padding: 0.5em 1em;
+    width: 95%;
+    background: rgb(211, 211, 211);
+}

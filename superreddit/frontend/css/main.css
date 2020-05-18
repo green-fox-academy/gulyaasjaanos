@@ -1,16 +1,3 @@
-body {
-    background: rgb(211, 211, 211)
-}
-
-main {
-    width: 75vw;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
 article {
     width: 100%;
     display: flex;
@@ -19,6 +6,7 @@ article {
     align-items: flex-start;
     justify-content: flex-end;
     background: #eee;
+    padding: 0.5em 1em;
 }
 
 h2 {
@@ -61,4 +49,8 @@ section nav .modify_clickable {
 section nav .remove_clickable {
     color: darkblue;
     cursor: pointer;
+}
+
+button {
+    align-self: flex-start;
 }

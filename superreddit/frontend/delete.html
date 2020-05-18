@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SuperReddit Delete Post</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="./css/layout.css">
     <link rel="stylesheet" type="text/css" href="./css/delete.css">
 </head>
 <body>
     <header>
         <h1>Welcome to SuperReddit!</h1>
+        <h3>Delete post</h3>
     </header>
     <main>
         <form action="">
-            <label for="title"></label>
+            <label for="title">Title</label>
             <textarea name="title" id="title" cols="30" rows="4" readonly></textarea>
-            <label for="url"></label>
+            <label for="url">URL</label>
             <input type="text" size="40" name="url" id="url" readonly>
             <button type="submit">delete</button>
         </form>
         <p>Deletion will redirect you to main page.</p>
     </main>
+    <aside></aside>
     <script src="./js/delete.js"></script>
 </body>
 </html>

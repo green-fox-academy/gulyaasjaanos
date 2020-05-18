@@ -83,6 +83,16 @@ app.post("/posts", (req,res) => {
         });
 });
 
+app.get("/user", (req,res) => {
+    SQL.getUserId(req.header("user"))
+        .then( (response) => {
+            res.send(response);
+        })
+        .catch( (error) => {
+            res.status(error).send({error: "We could not log you in."});
+        });
+});
+
 app.listen(8080, () => {
     console.log(`server running at port 8080`);
 });

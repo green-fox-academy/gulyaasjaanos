@@ -1,6 +1,6 @@
 "use strict";
 
-const user = "anonymus";
+const user = (localStorage.getItem("user"))? localStorage.getItem("user") : "anonymus";
 const query = window.location.search;
 const queryParams = new URLSearchParams(query);
 const id = queryParams.get("id");

@@ -5,14 +5,17 @@
 }
 
 body {
+    width: 75vw;
+    margin: 0 auto;
     background: rgb(211, 211, 211);
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 3fr 1fr;
     grid-template-rows: 25vh auto;
     grid-template-areas: 
         "header header"
         "main aside";
     display: grid;
     grid-gap: 0.5em;
+    justify-content: center;
 }
 
 header {

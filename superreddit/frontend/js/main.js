@@ -1,10 +1,14 @@
 "use strict";
 
 const $main = document.querySelector("main");
-const $newpost = document.querySelector("button");
+const $login = document.querySelector('button[type="button"]');
+const $label = document.querySelector("label");
+const $input = document.querySelector("input");
 const $form = document.querySelector("form");
 
-const user = "anonymus";
+const user = (localStorage.getItem("user"))? localStorage.getItem("user") : "anonymus";
+$label.innerHTML = `You are logged in as <span>${user}</span>.`;
+$input.value = "";
 
 fetch("http://localhost:8080/posts",
     {
@@ -98,4 +102,26 @@ $main.addEventListener("click", (event) => {
 $form.addEventListener("submit", (event) => {
     event.preventDefault();
     window.location.href = "http://localhost:8080/post.html"
+});
+
+$login.addEventListener("click", () => {
+    fetch(`http://localhost:8080/user`,
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "user": $input.value
+            }
+        })
+        .then( (response) => {
+            if (response.status === 200) {
+                localStorage.setItem("user", $input.value);
+                window.location.href = "http://localhost:8080"
+            } else {
+                $label.innerHTML = `We cannot logged you in. You are still logged in as <span>${user}</span>.`
+            }
+        })
+        .catch( (error) => $label.innerHTML = `You are still logged in as ${user}.`);
+    
 });

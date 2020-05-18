@@ -54,3 +54,9 @@ section nav .remove_clickable {
 button {
     align-self: flex-start;
 }
+button[type="button"] {
+    font-size: 1em;
+}
+label span {
+    color: orange;
+}

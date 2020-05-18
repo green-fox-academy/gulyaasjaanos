@@ -172,5 +172,6 @@ module.exports = {
     getSinglePost,
     updatePost,
     deletePost,
-    postPost
+    postPost,
+    getUserId
 }

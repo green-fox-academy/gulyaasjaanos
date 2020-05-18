@@ -16,15 +16,15 @@ let access = true;
 $form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (access) {
-        fetch(`http://localhost:8080/postit`,
+        fetch(`http://localhost:8080/posts`,
         {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "user": user
             },
             body: JSON.stringify({
-                "user": user,
                 "title": $title.value,
                 "url": $url.value
             })

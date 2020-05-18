@@ -13,14 +13,14 @@ const $p = document.querySelector("p");
 
 let access = true;
 
-fetch(`http://localhost:8080/post/${id}`,
+fetch(`http://localhost:8080/posts/${id}`,
     {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({"user": user})
+            "Accept": "application/json",
+            "user": user
+        }
     })
     .then( (response) => response.json(response) )
     .then( (json) => {
@@ -41,11 +41,9 @@ $form.addEventListener("submit", (event) => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                "user": user,
-            })
+                "Accept": "application/json",
+                "user": user
+            }
         })
         .then( () => window.location.href = "http://localhost:8080" )
         .catch( (error) => $p.innerHTML = error );

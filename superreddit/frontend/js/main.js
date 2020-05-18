@@ -8,17 +8,16 @@ const user = "anonymus";
 
 fetch("http://localhost:8080/posts",
     {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({"user": user})
+            "Accept": "application/json",
+            "user": user
+        }
     })
     .then( (response) => response.json(response) )
     .then( (json) => {
         renderList(json);
-        console.log(json);
     })
     .catch( (error) => console.log(error) );
 
@@ -81,13 +80,12 @@ $main.addEventListener("click", (event) => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({"user": user})
+                "Accept": "application/json",
+                "user":user
+            }
         })
             .then( (response) => response.json(response) )
             .then( (json) => {
-                console.log(json);
                 document.querySelectorAll(`img[data-id='${event.target.dataset.id}']`)[0].classList.remove("vote_clickable");
                 document.querySelectorAll(`img[data-id='${event.target.dataset.id}']`)[1].classList.remove("vote_clickable");
                 event.target.src = (event.target.dataset.vote === "upvote")? "./assets/upvoted.png" : "./assets/downvoted.png";

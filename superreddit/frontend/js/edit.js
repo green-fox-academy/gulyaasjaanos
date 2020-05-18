@@ -13,14 +13,14 @@ const $p = document.querySelector("p");
 
 let access = true;
 
-fetch(`http://localhost:8080/post/${id}`,
+fetch(`http://localhost:8080/posts/${id}`,
     {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({"user": user})
+            "Accept": "application/json",
+            "user": user
+        }
     })
     .then( (response) => response.json(response) )
     .then( (json) => {
@@ -36,15 +36,15 @@ fetch(`http://localhost:8080/post/${id}`,
 $form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (access) {
-        fetch(`http://localhost:8080/post/${id}`,
+        fetch(`http://localhost:8080/posts/${id}`,
         {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "user": user
             },
             body: JSON.stringify({
-                "user": user,
                 "title": $title.value,
                 "url": $url.value
             })

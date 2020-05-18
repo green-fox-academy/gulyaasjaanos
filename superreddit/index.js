@@ -13,8 +13,8 @@ app.get("/", (req,res) => {
     res.sendFile(path.join(__dirname+'/./frontend/main.html'));
 });
 
-app.post("/posts/", (req,res) => {
-    SQL.getPosts(req.body.user)
+app.get("/posts/", (req,res) => {
+    SQL.getPosts(req.header("user"))
         .then( (response) => {
             res.send(response);
         })
@@ -24,7 +24,7 @@ app.post("/posts/", (req,res) => {
 });
 
 app.put("/posts/:id/upvote", (req,res) => {
-    SQL.putVote(req.body.user,req.params.id,1)
+    SQL.putVote(req.header("user"),req.params.id,1)
         .then( (response) => {
             res.send(response);
         })
@@ -34,7 +34,7 @@ app.put("/posts/:id/upvote", (req,res) => {
 });
 
 app.put("/posts/:id/downvote", (req,res) => {
-    SQL.putVote(req.body.user,req.params.id,-1)
+    SQL.putVote(req.header("user"),req.params.id,-1)
         .then( (response) => {
             res.send(response);
         })
@@ -43,8 +43,8 @@ app.put("/posts/:id/downvote", (req,res) => {
         });
 });
 
-app.post("/post/:id", (req,res) => {
-    SQL.getSinglePost(req.body.user,req.params.id)
+app.get("/posts/:id", (req,res) => {
+    SQL.getSinglePost(req.header("user"),req.params.id)
         .then( (response) => {
             res.send(response);
         })
@@ -53,8 +53,8 @@ app.post("/post/:id", (req,res) => {
         });
 });
 
-app.put("/post/:id", (req,res) => {
-    SQL.updatePost(req.body.user,req.params.id,req.body.title,req.body.url)
+app.put("/posts/:id", (req,res) => {
+    SQL.updatePost(req.header("user"),req.params.id,req.body.title,req.body.url)
         .then( (response) => {
             res.send(response);
         })
@@ -64,7 +64,7 @@ app.put("/post/:id", (req,res) => {
 });
 
 app.delete("/post/:id", (req,res) => {
-    SQL.deletePost(req.body.user,req.params.id)
+    SQL.deletePost(req.header("user"),req.params.id)
         .then( (response) => {
             res.send(response);
         })
@@ -73,8 +73,8 @@ app.delete("/post/:id", (req,res) => {
         });
 });
 
-app.post("/postit", (req,res) => {
-    SQL.postPost(req.body.user,req.body.title,req.body.url)
+app.post("/posts", (req,res) => {
+    SQL.postPost(req.header("user"),req.body.title,req.body.url)
         .then( (response) => {
             res.send(response);
         })

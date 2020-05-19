@@ -36,7 +36,7 @@ const renderList = (listelEments) => {
                     $h2.innerHTML = `${e.title} <br><span>(${e.url})</span>`;
                     $section.append($h2);
                 const $p = document.createElement("p");
-                    $p.innerHTML = `submitted ${e.timestamp} by ${e.owner}`;
+                    $p.innerHTML = `submitted ${timeAgo(e.timestamp).days} days ago by ${e.owner}`;
                     $section.append($p);
                 const $nav = document.createElement("nav");
                     $section.append($nav);
@@ -121,3 +121,13 @@ $login.addEventListener("click", () => {
         .catch( (error) => $label.innerHTML = `You are still logged in as ${user}.`);
     
 });
+
+const timeAgo = (timestamp) => {
+    const now = Date.now();
+    const diff = now - timestamp*1000;
+    const dateTime = new Date(diff);
+    const ago = {
+        days: Math.floor(diff / (1000*60*60*24))
+    };
+    return ago;
+}

@@ -15,7 +15,7 @@ h2 {
 }
 
 h2 span {
-    font-size: 0.65em;
+    font-size: 0.55em;
     font-weight: 400;
 }
 
@@ -42,11 +42,7 @@ section nav a:first-child {
 section nav a {
     color: lightgrey;
 }
-section nav .modify_clickable {
-    color: darkblue;
-    cursor: pointer;
-}
-section nav .remove_clickable {
+section nav .clickable {
     color: darkblue;
     cursor: pointer;
 }

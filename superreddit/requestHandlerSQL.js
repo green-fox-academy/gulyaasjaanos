@@ -33,21 +33,16 @@ const getPosts = (user) => {
 
 const putVote = (user,post_id,vote) => {
     return new Promise( async (resolve, reject) => {
-        const user_id = await getUserId(user)
-            .then( (result) => result.id )
-            .catch( (error) => reject(error) );
-        const score = await getSinglePost(user,post_id)
-            .then( (result) => result.score )
-            .catch( (error) => reject(error) );
-        await postVote(post_id,user_id,vote)
-            .then( (result) => result )
-            .catch( (error) => reject(error) );
-        await updateVote(post_id,score+vote)
-            .then( (result) => result )
-            .catch( (error) => reject(error) );
-        getSinglePost(user,post_id)
-            .then( (result) => resolve(result) )
-            .catch( (error) => reject(error) );
+        try {
+            const user_id = await getUserId(user);
+            const score = await getSinglePost(user,post_id);
+            await postVote(post_id,user_id.id,vote);
+            await updateVote(post_id,score.score+vote);
+            const post = await getSinglePost(user,post_id);
+            resolve(post);
+        } catch {
+            reject(400);
+        }
     });
 };
 

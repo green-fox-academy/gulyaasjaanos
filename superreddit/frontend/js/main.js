@@ -29,48 +29,33 @@ fetch("http://localhost:8080/posts",
 const renderList = (listelEments) => {
     let articleArray = [];
     listelEments.forEach( (e) => {
-        const $article = document.createElement("article");
-            const $section = document.createElement("section");
-                $article.append($section);
-                const $h2 = document.createElement("h2");
-                    $h2.innerHTML = `${e.title} <br><span>(${e.url})</span>`;
-                    $section.append($h2);
-                const $p = document.createElement("p");
-                    $p.innerHTML = `submitted ${timeAgo(e.timestamp).days} days ago by ${e.owner}`;
-                    $section.append($p);
-                const $nav = document.createElement("nav");
-                    $section.append($nav);
-                        const $a1 = document.createElement("a");
-                            $a1.innerHTML = "modify";
-                            if (e.owner === user) $a1.href = `http://localhost:8080/edit.html?id=${e.id}`;
-                            if (e.owner === user) $a1.classList.add("modify_clickable");
-                            $nav.append($a1);
-                        const $a2 = document.createElement("a");
-                            $a2.innerHTML = "remove";
-                            if (e.owner === user) $a2.href = `http://localhost:8080/delete.html?id=${e.id}`;
-                            if (e.owner === user) $a2.classList.add("remove_clickable");
-                            $nav.append($a2);
-            const $votenav = document.createElement("nav");
-                $article.append($votenav);
-                    const $img1 = document.createElement("img");
-                        $img1.dataset.id = e.id;
-                        $img1.dataset.vote = "upvote";
-                        $img1.src = (e.vote === 1)? "./assets/upvoted.png" : "./assets/upvote.png";
-                        if (e.vote === 0) $img1.classList.add("vote_clickable");
-                        $votenav.append($img1);
-                    const $score = document.createElement("div");
-                        $score.innerHTML = `${e.score}`;
-                        $score.dataset.id = e.id;
-                        $votenav.append($score);
-                    const $img2 = document.createElement("img");
-                        $img2.dataset.id = e.id;
-                        $img2.dataset.vote = "downvote";
-                        $img2.src = (e.vote === -1)? "./assets/downvoted.png" : "./assets/downvote.png";
-                        if (e.vote === 0) $img2.classList.add("vote_clickable");
-                        $votenav.append($img2);
+        const $article = createArticle(e);
         articleArray.push($article);
     });
     $main.append(...articleArray);
+};
+
+const createArticle = (e) => {
+    const $article = document.createElement("article");
+    $article.innerHTML =
+    `
+    <section>
+        <h2>${e.title} <br><span>(${e.url})</span></h2>
+        <p>submitted ${timeAgo(e.timestamp).days} days ago by ${e.owner}</p>
+        <nav>
+            <a ${(e.owner === user)? `href="http://localhost:8080/edit.html?id=${e.id}"` : ""} class=${(e.owner === user)? "clickable" : ""}>edit</a>
+            <a ${(e.owner === user)? `href="http://localhost:8080/delete.html?id=${e.id}"` : ""} class=${(e.owner === user)? "clickable" : ""}>delete</a>
+        </nav>
+    </section>
+    <nav>
+        <img src="${(e.vote === 1)? `./assets/upvoted.png` :   `./assets/upvote.png`}" alt="upvote"
+        data-id="${e.id}" data-vote="upvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
+        <div data-id="${e.id}">${e.score}</div>
+        <img src="${(e.vote === -1)? `./assets/downvoted.png` :   `./assets/downvote.png`}" alt="downvote"
+        data-id="${e.id}" data-vote="downvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
+    </nav>
+    `
+    return $article;
 };
 
 $main.addEventListener("click", (event) => {

@@ -16,9 +16,9 @@
     <main>
         <form action="">
             <label for="title">Title</label>
-            <textarea name="title" id="title" cols="30" rows="4"></textarea>
+            <textarea name="title" id="title" cols="30" rows="4" minlength="1" required></textarea>
             <label for="url">URL</label>
-            <input type="text" size="40" name="url" id="url">
+            <input type="text" size="40" name="url" id="url" pattern="((https?:\/\/www\.)|(www\.)|(https?:\/\/))(\w+\.\w{2,3})+(\.\w+)?(\/.*)*"">
             <button type="submit">submit</button>
         </form>
         <p>Modification will redirect you to main page.</p>

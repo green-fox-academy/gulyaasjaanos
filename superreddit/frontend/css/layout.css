@@ -9,7 +9,7 @@ body {
     margin: 0 auto;
     background: rgb(211, 211, 211);
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 25vh auto;
+    grid-template-rows: 25vh 74vh;
     grid-template-areas: 
         "header header"
         "main aside";
@@ -35,11 +35,13 @@ header {
 main {
     grid-area: main;
     width: 100%;
+    max-height: ;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: stretch;
+    overflow: auto;
 }
 
 aside {

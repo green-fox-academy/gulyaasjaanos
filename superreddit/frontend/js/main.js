@@ -49,10 +49,10 @@ const createArticle = (e) => {
     </section>
     <nav>
         <img src="${(e.vote === 1)? `./assets/upvoted.png` :   `./assets/upvote.png`}" alt="upvote"
-        data-id="${e.id}" data-vote="upvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
+            data-id="${e.id}" data-vote="upvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
         <div data-id="${e.id}">${e.score}</div>
         <img src="${(e.vote === -1)? `./assets/downvoted.png` :   `./assets/downvote.png`}" alt="downvote"
-        data-id="${e.id}" data-vote="downvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
+            data-id="${e.id}" data-vote="downvote" class=${(e.vote === 0)? "vote_clickable" : ""}>
     </nav>
     `
     return $article;
@@ -66,7 +66,7 @@ $main.addEventListener("click", (event) => {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
-                "user":user
+                "user": user
             }
         })
             .then( (response) => response.json(response) )
@@ -103,8 +103,7 @@ $login.addEventListener("click", () => {
                 $label.innerHTML = `We cannot logged you in. You are still logged in as <span>${user}</span>.`
             }
         })
-        .catch( (error) => $label.innerHTML = `You are still logged in as ${user}.`);
-    
+        .catch( (error) => $label.innerHTML = `You are still logged in as ${user}.`);   
 });
 
 const timeAgo = (timestamp) => {

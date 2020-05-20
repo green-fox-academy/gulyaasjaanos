@@ -34,10 +34,10 @@ const getPosts = (user) => {
 const putVote = (user,post_id,vote) => {
     return new Promise( async (resolve, reject) => {
         try {
-            const user_id = await getUserId(user);
-            const score = await getSinglePost(user,post_id);
-            await postVote(post_id,user_id.id,vote);
-            await updateVote(post_id,score.score+vote);
+            const user_id = (await getUserId(user)).id;
+            const score = (await getSinglePost(user,post_id)).score;
+            await postVote(post_id,user_id,vote);
+            await updateVote(post_id,score+vote);
             const post = await getSinglePost(user,post_id);
             resolve(post);
         } catch {

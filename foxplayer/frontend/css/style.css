@@ -1,0 +1,9 @@
+
+.button {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+input[type="range"] {
+    display: none;
+}

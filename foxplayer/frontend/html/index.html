@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxPlayer</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <audio src="../mp3/Organoid_-_09_-_Purple_Drift.mp3"></audio>
+    <img src="../asset/rewind.svg" alt="" class="rewind button">
+    <img src="../asset/play.svg" alt="" class="play button">
+    <img src="../asset/forward.svg" alt="" class="forward button">
+    <input type="range" id="timemeter" name="timemeter" value="0" steps="0.01" min="0" max="100">
+    <progress id="time" value="0" max="100"></progress>
+    <img src="../asset/shuffle.svg" alt="" class="shuffle button">
+    <img src="../asset/volume.svg" alt="" class="volume button">
+    <input type="range" id="volumemeter" name="volumemeter" value="0" steps="0.01" min="0" max="100">
+    <progress id="volume" value="0" max="100"></progress>
+    <script src="../js/player.js"></script>
+</body>
+</html>

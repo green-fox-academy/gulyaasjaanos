@@ -1,9 +1,52 @@
-
-.button {
-    width: 1.4em;
-    height: 1.4em;
+* {
+    font-family: Arial;
 }
 
-input[type="range"] {
-    display: none;
+
+#logo {
+    width: 98%;
+    height: 98%;
+}
+.logowrapper {
+    grid-area: logo;
+    position: relative;
+}
+.logowrapper::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(../asset/foxplayer_trans2.png) center/100% 100% no-repeat;
+}
+
+.albumart {
+    background: url(../asset/music-placeholder.png) center/100% 100% no-repeat;
+}
+
+.playlist_control {
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: grey;
+}
+.add_playlist {
+    font-size: 2rem;
+}
+
+.track_control {
+    color: grey;
+}
+.add_to_favorites {
+    width: 1.4em;
+    height: 1.4em;
+    background: url(../asset/star.svg) center/80% 80% no-repeat;
+}
+.add_to_playlist {
+    font-size: 2rem;
+}
+
+.playlists,
+.tracks {
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(122,130,132,1) 100%);
 }

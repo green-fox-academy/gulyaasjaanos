@@ -1,0 +1,87 @@
+body {
+    background: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+main {
+    background: rgb(245, 245, 245);
+    width: 75vw;
+    height: 75vh;
+    padding: 1em;
+    border-radius: 10px 35px 10px 35px;
+    border: 5px double lightgrey;
+    box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
+    display: grid;
+    grid-template-columns: 15vh 15% 20% auto;
+    grid-template-rows: 9vh 6vh 6vh auto 8vh;
+    grid-template-areas: 
+        "logo whiteboard albumart track_control"
+        "logo whiteboard albumart tracks"
+        "playlist_control playlist_control albumart tracks"
+        "playlists playlists playlists tracks"
+        "controls controls controls controls" ;
+}
+
+.controls {
+    grid-area: controls;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.controls > div,
+.controls > progress,
+.controls > input {
+    margin-left: 0.5em;
+}
+.controls > div:first-of-type {
+    margin-left: 0;
+}
+progress[id="time"] {
+    flex-grow: 1;
+}
+
+.albumart {
+    grid-area: albumart;
+}
+
+.playlist_control {
+    grid-area: playlist_control;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add_playlist {
+    margin-right: 0.5em;
+}
+
+.track_control {
+    margin: 1em 0;
+    padding: 0 0 1em 1em;
+    grid-area: track_control;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.track_control nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.track_control header h1,
+.track_control header h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.playlists {
+    grid-area: playlists;
+    overflow: auto;
+}
+
+.tracks {
+    grid-area: tracks;
+    overflow: auto;
+}

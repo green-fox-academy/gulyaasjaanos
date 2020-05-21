@@ -4,19 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoxPlayer</title>
+    <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/player.css">
 </head>
 <body>
-    <audio src="../mp3/Organoid_-_09_-_Purple_Drift.mp3"></audio>
-    <img src="../asset/rewind.svg" alt="" class="rewind button">
-    <img src="../asset/play.svg" alt="" class="play button">
-    <img src="../asset/forward.svg" alt="" class="forward button">
-    <input type="range" id="timemeter" name="timemeter" value="0" steps="0.01" min="0" max="100">
-    <progress id="time" value="0" max="100"></progress>
-    <img src="../asset/shuffle.svg" alt="" class="shuffle button">
-    <img src="../asset/volume.svg" alt="" class="volume button">
-    <input type="range" id="volumemeter" name="volumemeter" value="0" steps="0.01" min="0" max="100">
-    <progress id="volume" value="0" max="100"></progress>
-    <script src="../js/player.js"></script>
+    <main>
+        <div class="logowrapper">
+            <progress id="logo" value="99.99" max="100"></progress>
+        </div>
+        <div class="whiteboard"></div>
+        <div class="playlist_control">
+            <div class="playlists_label">Playlists</div>
+            <div class="add_playlist">+</div>
+        </div>
+        <div class="playlists"></div>
+        <div class="albumart"></div>
+        <div class="track_control">
+            <header>
+                <h1>Track title</h1>
+                <h2>Artist name</h2>
+            </header>
+            <nav>
+                <div class="add_to_playlist">+</div>
+                <div class="add_to_favorites"></div>
+            </nav>
+        </div>
+        <div class="tracks"></div>
+        <div class="controls">
+            <audio src="../mp3/Organoid_-_09_-_Purple_Drift.mp3"></audio>
+            <div class="rewind button"></div>
+            <div class="play button"></div>
+            <div class="forward button"></div>
+            <input type="range" id="timemeter" name="timemeter" value="0" steps="0.01" min="0" max="100">
+            <progress id="time" value="0" max="100"></progress>
+            <div class="shuffle button"></div>
+            <div class="repeat button"></div>
+            <div class="volume button pressed"></div>
+            <input type="range" id="volumemeter" name="volumemeter" value="0" steps="0.01" min="0" max="100">
+            <progress id="volume" value="0" max="100"></progress>
+            <script src="../js/player.js"></script>
+        </div>
+    </main>
 </body>
 </html>

@@ -8,6 +8,9 @@ const $forwardBtn = document.querySelector(".forward.button");
 const $audio = document.querySelector("audio");
 const $timeMeter = document.querySelector("#timemeter");
 const $volumeMeter = document.querySelector("#volumemeter");
+const $volumeBtn = document.querySelector(".volume.button");
+const $shuffleBtn = document.querySelector(".shuffle.button");
+const $repeatBtn = document.querySelector(".repeat.button");
 $timeMeter.value = 0;
 $volumeMeter.value = 8;
 $audio.volume = 0.8;
@@ -27,11 +30,13 @@ $playBtn.addEventListener("click", (event) => {
 });
 
 $audio.addEventListener("play", () => {
-    $playBtn.src = "../asset/pause.svg";
+    $playBtn.classList.add("pause");
+    $playBtn.classList.remove("play");
 });
 
 $audio.addEventListener("pause", () => {
-    $playBtn.src = "../asset/play.svg";
+    $playBtn.classList.add("play");
+    $playBtn.classList.remove("pause");
 });
 
 $audio.addEventListener("ended", () => {
@@ -100,4 +105,27 @@ $volumeProgress.addEventListener("mousemove", (event) => {
         const progress = ((event.clientX - $volumeProgress.getBoundingClientRect().left) / $volumeProgress.offsetWidth) * 100;
         $audio.volume = progress/100;
     }
+});
+
+$volumeBtn.addEventListener("click", () => {
+    if ($volumeProgress.value === 0) {
+        $volumeProgress.value = 99.9;
+    } else {
+        $volumeProgress.value = 0;
+    }
+    $volumeBtn.classList.toggle("pressed");
+    $audio.volume = $volumeProgress.value/100;
+});
+
+$shuffleBtn.addEventListener("click", () => {
+    $shuffleBtn.classList.toggle("pressed");
+});
+
+$repeatBtn.addEventListener("click", () => {
+    if ($audio.loop) {
+        $audio.loop = false;
+    } else {
+        $audio.loop = true;
+    }
+    $repeatBtn.classList.toggle("pressed");
 });

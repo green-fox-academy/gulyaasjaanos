@@ -1,0 +1,56 @@
+.button {
+    width: 1.4em;
+    height: 1.4em;
+    cursor: pointer;
+}
+.button.rewind {
+    background: url(../asset/rewind.svg) center/100% 100% no-repeat;
+}
+.button.rewind:hover {
+    background: url(../asset/rewind_pressed.svg) center/100% 100% no-repeat;
+}
+.button.play {
+    background: url(../asset/play.svg) center/100% 100% no-repeat;
+}
+.button.play:hover {
+    background: url(../asset/play_pressed.svg) center/100% 100% no-repeat;
+}
+.button.pause {
+    background: url(../asset/pause.svg) center/70% 70% no-repeat;
+}
+.button.pause:hover {
+    background: url(../asset/pause_pressed.svg) center/70% 70% no-repeat;
+}
+.button.forward {
+    background: url(../asset/forward.svg) center/100% 100% no-repeat;
+}
+.button.forward:hover {
+    background: url(../asset/forward_pressed.svg) center/100% 100% no-repeat;
+}
+.button.shuffle {
+    background: url(../asset/shuffle.svg) center/85% 85% no-repeat;
+}
+.button.shuffle.pressed {
+    background: url(../asset/shuffle_pressed.svg) center/85% 85% no-repeat;
+}
+.button.volume {
+    background: url(../asset/volume.svg) center/100% 100% no-repeat;
+}
+.button.volume.pressed {
+    background: url(../asset/volume_pressed.svg) center/100% 100% no-repeat;
+}
+.button.repeat {
+    background: url(../asset/repeat.svg) center/85% 85% no-repeat;
+}
+.button.repeat.pressed {
+    background: url(../asset/repeat_pressed.svg) center/85% 85% no-repeat;
+}
+
+progress {
+    height: 1.4em;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    display: none;
+}

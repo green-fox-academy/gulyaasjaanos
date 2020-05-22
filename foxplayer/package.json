@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "jsmediatags": "^3.9.3",
     "nodemon": "^2.0.4"
   }
 }

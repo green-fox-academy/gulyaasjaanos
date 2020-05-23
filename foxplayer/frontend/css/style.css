@@ -1,5 +1,6 @@
 * {
     font-family: Arial;
+    box-sizing: border-box;
 }
 
 
@@ -49,4 +50,47 @@
 .playlists,
 .tracks {
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(122,130,132,1) 100%);
+}
+
+article {
+    background: lightgrey;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 98%;
+    color: grey;
+    margin: 0.2em;
+    cursor: pointer;
+}
+article:nth-of-type(2n) {
+    background: #eee;
+}
+article:hover {
+    background: lime;
+}
+article.selected {
+    background: green;
+    color: #eee;
+}
+.playlists article h3 {
+    padding: 0.5em 1em;
+    margin: 0;
+}
+.playlists article div {
+    padding-right: 1em;
+    font-weight: 900;
+}
+
+.tracks article {
+    padding: 0.3em 0;
+}
+.tracks article section {
+    display: flex;
+}
+.tracks h4 {
+    margin: 0;
+    padding: 0 1em;
+}
+.tracks h3 {
+    margin: 0;
 }

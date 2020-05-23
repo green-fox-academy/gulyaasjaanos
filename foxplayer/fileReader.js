@@ -24,7 +24,6 @@ const dirMp3 = (dir) => {
         let index = 0;
         fs.readdirSync(dir+"/frontend/mp3/").forEach( (file,i,array) => {
             readMp3(dir+"/frontend/mp3/"+file, (metaData) => {
-                if (metaData.error) reject(metaData);
                 mp3List.push(metaData);
                 mp3List[index].file = file;
                 mp3List[index].track = i+1;

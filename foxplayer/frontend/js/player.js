@@ -18,6 +18,7 @@ $audio.volume = 0.8;
 $timeProgress.value = 0;
 $volumeProgress.value = 80;
 let loop = false;
+let shuffle = false;
 
 
 $playBtn.addEventListener("click", (event) => {
@@ -109,6 +110,11 @@ $volumeBtn.addEventListener("click", () => {
 });
 
 $shuffleBtn.addEventListener("click", () => {
+    if (shuffle) {
+        shuffle = false;
+    } else {
+        shuffle = true;
+    }
     $shuffleBtn.classList.toggle("pressed");
 });
 

@@ -1,6 +1,7 @@
 "use strict";
 
 const alltrackURL = "http://localhost:8000/alltrack";
+const playlistsURL = "http://localhost:8000/playlists";
 let playlistArray = [];
 let playlistIndex = 0;
 let trackIndex = 0;
@@ -20,48 +21,41 @@ fetch(alltrackURL,
     .then( (response) => response.json() )
     .then( (json) => {
         createPlaylists(json);
-        renderPlaylists();
-        renderTracklist(playlistArray[playlistIndex].tracks);
-        renderCurrentTrack(playlistArray[playlistIndex].tracks[trackIndex],false);
     });
 
 const createPlaylists = (alltrack) => {
     playlistArray.push({
         name: "All tracks",
-        tracks: alltrack.mp3List.filter( e => !e.error )
+        tracks: alltrack.mp3List.filter( e => !e.error ),
+        system: 1
     });
-    playlistArray.push({
-        name: "Favorites",
-        tracks: []
-    });
-    playlistArray.push({
-        name: "Custom",
-        tracks: []
-    });
-    playlistArray.push({
-        name: "Cool music",
-        tracks: []
-    });
-    playlistArray.push({
-        name: "For programming",
-        tracks: []
-    });
-    playlistArray.push({
-        name: "Relaxing",
-        tracks: []
-    });
-    playlistArray.push({
-        name: "Ambient",
-        tracks: []
-    });
+    fetch(playlistsURL,
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        .then( (response) => response.json() )
+        .then( (json) => {
+            json.forEach( e => playlistArray.push({
+                name: e.title,
+                tracks: [],
+                system: e.system
+            }) );
+            renderPlaylists();
+            renderTracklist(playlistArray[playlistIndex].tracks);
+            renderCurrentTrack(playlistArray[playlistIndex].tracks[trackIndex],false);
+        });
 };
 
 const renderPlaylists = () => {
-    console.log(playlistArray);
+    
     let renderArray = [];
     playlistArray.forEach( (e,i) => {
         const $listItem = document.createElement("article");
-        $listItem.innerHTML = (i === 0 || i === 1) ?  
+        $listItem.innerHTML = (e.system === 1) ?  
             `<h3>${e.name}</h3>` :
             `<h3>${e.name}</h3>
             <div class="delete list" data-id=${i}>X</div>`;
@@ -136,15 +130,7 @@ $tracks.addEventListener("click", (event) => {
 });
 
 $forwardBtn.addEventListener("click", () => {
-    if (trackIndex+1 === playlistArray[playlistIndex].tracks.length) {
-        if (loop) {
-            trackIndex = 0;
-            setTrack();
-        }
-    } else {
-        trackIndex++;
-        setTrack();
-    }
+    newTrack();
 });
 
 const setTrack = () => {
@@ -155,16 +141,25 @@ const setTrack = () => {
 
 $audio.addEventListener("ended", () => {
     $playBtn.src = "../asset/play.svg";
-    if (trackIndex+1 === playlistArray[playlistIndex].tracks.length) {
-        if (loop) {
-            trackIndex = 0;
+    newTrack();
+});
+
+const newTrack = () => {
+    if (shuffle) {
+        trackIndex = Math.floor(Math.random() * playlistArray[playlistIndex].tracks.length);
+        setTrack();
+    } else {
+        if (trackIndex+1 === playlistArray[playlistIndex].tracks.length) {
+            if (loop) {
+                trackIndex = 0;
+                setTrack();
+            }
+        } else {
+            trackIndex++;
             setTrack();
         }
-    } else {
-        trackIndex++;
-        setTrack();
     }
-});
+}
 
 
 const formatDuration = (duration) => {

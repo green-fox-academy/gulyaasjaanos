@@ -13,6 +13,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "jsmediatags": "^3.9.3",
+    "mysql": "^2.18.1",
     "nodemon": "^2.0.4"
   }
 }

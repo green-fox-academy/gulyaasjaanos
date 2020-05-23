@@ -6,6 +6,8 @@ let playlistIndex = 0;
 let trackIndex = 0;
 const $playlists = document.querySelector(".playlists");
 const $tracks = document.querySelector(".tracks");
+const $currentTrack = document.querySelector(".track_control");
+const $audioBuffer = document.querySelector(".audiobuffer");
 
 fetch(alltrackURL,
     {
@@ -19,6 +21,8 @@ fetch(alltrackURL,
     .then( (json) => {
         createPlaylists(json);
         renderPlaylists();
+        renderTracklist(playlistArray[playlistIndex].tracks);
+        renderCurrentTrack(playlistArray[playlistIndex].tracks[trackIndex],false);
     });
 
 const createPlaylists = (alltrack) => {
@@ -88,11 +92,83 @@ const renderTracklist = (tracklist) => {
         $listItem.innerHTML = `
             <section>
                 <h4>${e.track}</h4>
-                <h3>${e.artist}</h3>
+                <h3>${e.title}</h3>
             </section>
-            <h4>5:00</h4>
-        `;
+            <h4 data-id="dur${e.track}">${0}</h4>
+            `;
+        if (i === 0) $listItem.classList.add("selected");
+        $listItem.dataset.trackIndex = i;
         renderArray.push($listItem);
+        const $buffedAudio = document.createElement("audio")
+            $buffedAudio.src = `../mp3/${e.file}`;
+            $buffedAudio.load();
+            $buffedAudio.addEventListener("durationchange", () => {
+                document.querySelector(`h4[data-id="dur${e.track}"]`).innerHTML = formatDuration($buffedAudio.duration);
+                $buffedAudio.removeAttribute("src"); 
+            });
     });
     $tracks.append(...renderArray);
+};
+
+const renderCurrentTrack = (track,playable) => {
+    $currentTrack.innerHTML = `
+        <header>
+            <h1>${track.title}</h1>
+            <h2>${track.artist}</h2>
+        </header>
+        <nav>
+            <div data-title="${track.file}" class="add_to_playlist">+</div>
+            <div data-title="${track.file}" class="add_to_favorites"></div>
+        </nav>
+    `;
+    $audio.pause();
+    $timeProgress.value = 0;
+    $audio.currenttime = 0;
+    $audio.src = `../mp3/${track.file}`;
+    if (playable) $audio.play();
+};
+
+$tracks.addEventListener("click", (event) => {
+    if(event.target.parentNode.parentNode.dataset.trackIndex || event.target.dataset.trackIndex) {
+        trackIndex = event.target.parentNode.parentNode.dataset.trackIndex || event.target.dataset.trackIndex;
+        setTrack();
+    }
+});
+
+$forwardBtn.addEventListener("click", () => {
+    if (trackIndex+1 === playlistArray[playlistIndex].tracks.length) {
+        if (loop) {
+            trackIndex = 0;
+            setTrack();
+        }
+    } else {
+        trackIndex++;
+        setTrack();
+    }
+});
+
+const setTrack = () => {
+    document.querySelectorAll(".tracks article").forEach( e => e.classList.remove("selected"));
+    document.querySelector(`article[data-track-index="${trackIndex}"]`).classList.add("selected");
+    renderCurrentTrack(playlistArray[playlistIndex].tracks[trackIndex],true);
+};
+
+$audio.addEventListener("ended", () => {
+    $playBtn.src = "../asset/play.svg";
+    if (trackIndex+1 === playlistArray[playlistIndex].tracks.length) {
+        if (loop) {
+            trackIndex = 0;
+            setTrack();
+        }
+    } else {
+        trackIndex++;
+        setTrack();
+    }
+});
+
+
+const formatDuration = (duration) => {
+    let minutes = Math.floor(duration % 3600 / 60);
+    let seconds = Math.floor(duration % 3600 % 60);
+    return (minutes+":"+seconds);
 };

@@ -1,23 +1,24 @@
 "use strict";
 
 console.log("player ready");
-
+const $audio = document.querySelector("audio");
 const $playBtn = document.querySelector(".play.button");
 const $rewindBtn = document.querySelector(".rewind.button");
 const $forwardBtn = document.querySelector(".forward.button");
-const $audio = document.querySelector("audio");
 const $timeMeter = document.querySelector("#timemeter");
 const $volumeMeter = document.querySelector("#volumemeter");
 const $volumeBtn = document.querySelector(".volume.button");
 const $shuffleBtn = document.querySelector(".shuffle.button");
 const $repeatBtn = document.querySelector(".repeat.button");
+const $timeProgress = document.querySelector('progress[id="time"]');
+const $volumeProgress = document.querySelector('progress[id="volume"]');
 $timeMeter.value = 0;
 $volumeMeter.value = 8;
 $audio.volume = 0.8;
-const $timeProgress = document.querySelector('progress[id="time"]');
 $timeProgress.value = 0;
-const $volumeProgress = document.querySelector('progress[id="volume"]');
 $volumeProgress.value = 80;
+let loop = false;
+
 
 $playBtn.addEventListener("click", (event) => {
     if ($audio.paused) {
@@ -39,15 +40,9 @@ $audio.addEventListener("pause", () => {
     $playBtn.classList.remove("pause");
 });
 
-$audio.addEventListener("ended", () => {
-    $playBtn.src = "../asset/play.svg";
-    $timeMeter.value = 0;
-    $timeProgress.value = 0;
-});
-
 $audio.addEventListener("timeupdate", () => {
     $timeMeter.value = $audio.currentTime/$audio.duration * 100;
-    $timeProgress.value = $audio.currentTime/$audio.duration * 100;
+    $timeProgress.value = $audio.currentTime/$audio.duration * 100 || 0;
 });
 $timeMeter.addEventListener("input", () => {
     $audio.currentTime = $audio.duration/100 * $timeMeter.value;
@@ -55,10 +50,6 @@ $timeMeter.addEventListener("input", () => {
 
 $rewindBtn.addEventListener("click", () => {
     $audio.currentTime = 0;
-});
-
-$forwardBtn.addEventListener("click", () => {
-    $audio.currentTime = $audio.duration;
 });
 
 $audio.addEventListener("volumechange", () => {
@@ -122,10 +113,10 @@ $shuffleBtn.addEventListener("click", () => {
 });
 
 $repeatBtn.addEventListener("click", () => {
-    if ($audio.loop) {
-        $audio.loop = false;
+    if (loop) {
+        loop = false;
     } else {
-        $audio.loop = true;
+        loop = true;
     }
     $repeatBtn.classList.toggle("pressed");
 });

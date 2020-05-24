@@ -78,7 +78,7 @@ progress[id="time"] {
 
 .playlists {
     grid-area: playlists;
-    overflow: auto;
+    overflow-y: auto;
     border-radius: 5px 5px 0px 0px;
 }
 

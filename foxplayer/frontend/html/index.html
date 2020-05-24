@@ -17,9 +17,13 @@
         <div class="playlist_control">
             <div class="playlists_label">Playlists</div>
             <div class="add_playlist">+
-                <form action="">
+                <form class= "playlist adder" action="">
                     <input type="text" name="newlist" id="newlist" minlength="3">
                     <button type="submit">Create</button>
+                </form>
+                <form class= "playlist remover" action="" data-id=${i}>
+                    <input type="text" name="removelist" id="removelist" readonly>
+                    <button type="submit">Remove</button>
                 </form>
             </div>
         </div>

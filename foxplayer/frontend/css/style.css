@@ -34,6 +34,14 @@
 .add_playlist {
     font-size: 2rem;
     position: relative;
+    user-select: none;
+    cursor: pointer;
+}
+
+.delete_list {
+    position: relative;
+    user-select: none;
+    cursor: pointer;
 }
 
 .track_control {
@@ -103,7 +111,7 @@ article.selected {
     font-size: 1rem;
 }
 
-.add_playlist form {
+form.playlist {
     z-index: 100;
     position: absolute;
     left: 100%;
@@ -115,15 +123,19 @@ article.selected {
     border: 5px double lightgrey;
     box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.75);
     font-size: 1.2rem;
+    display: none;
 }
-.add_playlist form input {
+form.playlist.visible {
+    display: block;
+}
+form.playlist input {
     color: grey;
     margin: 0.2em;
     font-weight: 800;
     font-size: 1.2em;
     border: none;
 }
-.add_playlist form button{
+form.playlist button{
     background: green;
     color: #eee;
     margin: 0.2em;

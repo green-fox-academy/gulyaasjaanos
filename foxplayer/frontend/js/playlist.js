@@ -9,6 +9,10 @@ const $playlists = document.querySelector(".playlists");
 const $tracks = document.querySelector(".tracks");
 const $currentTrack = document.querySelector(".track_control");
 const $audioBuffer = document.querySelector(".audiobuffer");
+const $playlistAdder = document.querySelector(".add_playlist");
+const $playlistAdderForm = document.querySelector(".playlist.adder");
+const $playlistRemoverForm = document.querySelector(".playlist.remover");
+const $playlistRemoverText = document.querySelector(".playlist.remover input");
 
 fetch(alltrackURL,
     {
@@ -58,7 +62,7 @@ const renderPlaylists = () => {
         $listItem.innerHTML = (e.system === 1) ?  
             `<h3>${e.name}</h3>` :
             `<h3>${e.name}</h3>
-            <div class="delete list" data-id=${i}>X</div>`;
+            <div class="delete_list" data-id=${i} data-name="${e.name}">X</div>`;
         if (i === 0) $listItem.classList.add("selected");
         $listItem.dataset.playlistIndex = i;
         renderArray.push($listItem);
@@ -161,9 +165,19 @@ const newTrack = () => {
     }
 }
 
-
 const formatDuration = (duration) => {
     let minutes = Math.floor(duration % 3600 / 60);
     let seconds = Math.floor(duration % 3600 % 60);
     return (minutes+":"+seconds);
 };
+
+$playlistAdder.addEventListener("click", (event) => {
+    if (event.target === $playlistAdder) $playlistAdderForm.classList.toggle("visible");
+});
+
+$playlists.addEventListener("click", (event) => {
+    if (event.target.className === "delete_list") {
+        $playlistRemoverText.value = event.target.dataset.name;
+        $playlistRemoverForm.classList.toggle("visible");
+    }
+});

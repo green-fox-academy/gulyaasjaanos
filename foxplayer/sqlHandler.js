@@ -31,6 +31,37 @@ const getPlaylists = () => {
     });
 };
 
+const postPlaylist = (title) => {
+  return new Promise( (resolve, reject) => {
+      conn.query(
+          "INSERT INTO playlists (title,system) VALUES(?,0);"
+          , [title], (error, results) => {
+          if (error) {
+              reject("cannot write that");
+          } else {
+              resolve(results.insertId);
+          }
+      });
+  });
+};
+
+const deletePlaylist = (id) => {
+  return new Promise( (resolve, reject) => {
+      conn.query(
+          "DELETE FROM playlists WHERE id=?;"
+          , [id], (error, results) => {
+          if (error) {
+              reject("cannot delete that");
+          } else {
+              resolve();
+          }
+      });
+  });
+};
+
+
 module.exports = {
-    getPlaylists
+    getPlaylists,
+    postPlaylist,
+    deletePlaylist
 }

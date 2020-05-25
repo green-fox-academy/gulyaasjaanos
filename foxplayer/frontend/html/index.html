@@ -22,6 +22,8 @@
                     <button type="submit">Create</button>
                 </form>
                 <form class= "playlist remover" action="" data-id=${i}>
+                    <input type="hidden" name="removelistID" id="removelistID" readonly>
+                    <input type="hidden" name="removelistIndex" id="removelistIndex" readonly>
                     <input type="text" name="removelist" id="removelist" readonly>
                     <button type="submit">Remove</button>
                 </form>

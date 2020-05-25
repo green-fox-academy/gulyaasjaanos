@@ -11,8 +11,11 @@ const $currentTrack = document.querySelector(".track_control");
 const $audioBuffer = document.querySelector(".audiobuffer");
 const $playlistAdder = document.querySelector(".add_playlist");
 const $playlistAdderForm = document.querySelector(".playlist.adder");
+const $playlistAdderText = document.querySelector(".playlist.adder input");
 const $playlistRemoverForm = document.querySelector(".playlist.remover");
-const $playlistRemoverText = document.querySelector(".playlist.remover input");
+const $playlistRemoverText = document.querySelector('.playlist.remover input[type="text"]');
+const $playlistRemoverId = document.querySelector('.playlist.remover input[name="removelistID"]');
+const $playlistRemoverIndex = document.querySelector('.playlist.remover input[name="removelistIndex"]');
 
 fetch(alltrackURL,
     {
@@ -44,6 +47,7 @@ const createPlaylists = (alltrack) => {
         .then( (response) => response.json() )
         .then( (json) => {
             json.forEach( e => playlistArray.push({
+                id: e.id,
                 name: e.title,
                 tracks: [],
                 system: e.system
@@ -55,14 +59,16 @@ const createPlaylists = (alltrack) => {
 };
 
 const renderPlaylists = () => {
-    
+    while ($playlists.firstChild) {
+        $playlists.removeChild($playlists.firstChild);
+    }
     let renderArray = [];
     playlistArray.forEach( (e,i) => {
         const $listItem = document.createElement("article");
         $listItem.innerHTML = (e.system === 1) ?  
             `<h3>${e.name}</h3>` :
             `<h3>${e.name}</h3>
-            <div class="delete_list" data-id=${i} data-name="${e.name}">X</div>`;
+            <div class="delete_list" data-id=${e.id} data-index=${i} data-name="${e.name}">X</div>`;
         if (i === 0) $listItem.classList.add("selected");
         $listItem.dataset.playlistIndex = i;
         renderArray.push($listItem);
@@ -173,11 +179,61 @@ const formatDuration = (duration) => {
 
 $playlistAdder.addEventListener("click", (event) => {
     if (event.target === $playlistAdder) $playlistAdderForm.classList.toggle("visible");
+    $playlistRemoverForm.classList.remove("visible");
 });
 
 $playlists.addEventListener("click", (event) => {
     if (event.target.className === "delete_list") {
         $playlistRemoverText.value = event.target.dataset.name;
+        $playlistRemoverId.value = event.target.dataset.id;
+        $playlistRemoverIndex.value = event.target.dataset.index;
         $playlistRemoverForm.classList.toggle("visible");
+        $playlistAdderForm.classList.remove("visible");
     }
+});
+
+$playlistAdderForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    fetch(playlistsURL,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({title: $playlistAdderText.value})
+        })
+        .then( (response) => response.json() )
+        .then( (json) => {
+            playlistArray.push({
+                id: json.id,
+                name: $playlistAdderText.value,
+                tracks: [],
+                system: 0
+            })
+            renderPlaylists();
+            $playlistAdderForm.classList.remove("visible");
+        });
+});
+
+$playlistRemoverForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    fetch(playlistsURL+"/"+$playlistRemoverId.value,
+        {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        .then( () => {
+            playlistArray.splice($playlistRemoverIndex.value,1);
+            renderPlaylists();
+            if (playlistIndex === $playlistRemoverIndex.value) {
+                playlistIndex = 0;
+                renderTracklist(playlistArray[playlistIndex].tracks);
+                renderCurrentTrack(playlistArray[playlistIndex].tracks[trackIndex],false);
+            }
+            $playlistRemoverForm.classList.remove("visible");
+        });
 });

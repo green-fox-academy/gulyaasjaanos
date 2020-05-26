@@ -51,9 +51,13 @@
     width: 1.4em;
     height: 1.4em;
     background: url(../asset/star.svg) center/80% 80% no-repeat;
+    cursor: pointer;
 }
-.add_to_playlist {
+.add_to_playlist,
+.remove_from_playlist {
+    margin-right: 0.2em;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .playlists,
@@ -80,6 +84,9 @@ article:hover {
 article.selected {
     background: green;
     color: #eee;
+}
+article.marked {
+    border: solid lime 5px;
 }
 .playlists article h3 {
     padding: 0.5em 1em;

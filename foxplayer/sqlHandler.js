@@ -59,9 +59,53 @@ const deletePlaylist = (id) => {
   });
 };
 
+const postTrack = (id,file) => {
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            "INSERT INTO playlist_track (playlist_id,track_file) VALUES(?,?);"
+            , [id,file], (error, results) => {
+            if (error) {
+                reject("cannot write that");
+            } else {
+                resolve(results.insertId);
+            }
+        });
+    });
+  };
+
+const listAllTracks = () => {
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            "SELECT playlist_id,track_file FROM playlist_track"
+            , [], (error, results) => {
+            if (error) {
+                reject("cannot read that");
+            } else {
+                resolve(results);
+            }
+        });
+    });
+  };
+
+const listTracks = (id) => {
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            "SELECT playlist_id,track_file FROM playlist_track WHERE playlist_id=?"
+            , [id], (error, results) => {
+            if (error) {
+                reject("cannot read that");
+            } else {
+                resolve(results);
+            }
+        });
+    });
+  };
 
 module.exports = {
     getPlaylists,
     postPlaylist,
-    deletePlaylist
+    deletePlaylist,
+    postTrack,
+    listAllTracks,
+    listTracks
 }

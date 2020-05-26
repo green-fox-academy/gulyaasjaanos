@@ -73,6 +73,20 @@ const postTrack = (id,file) => {
     });
   };
 
+const deleteTrack = (id,file) => {
+    return new Promise( (resolve, reject) => {
+        conn.query(
+            "DELETE FROM playlist_track WHERE playlist_id=? AND track_file=?;"
+            , [id,file], (error, results) => {
+            if (error) {
+                reject("cannot delete that");
+            } else {
+                resolve(results.affectedRows);
+            }
+        });
+    });
+  };
+
 const listAllTracks = () => {
     return new Promise( (resolve, reject) => {
         conn.query(
@@ -107,5 +121,6 @@ module.exports = {
     deletePlaylist,
     postTrack,
     listAllTracks,
-    listTracks
+    listTracks,
+    deleteTrack
 }

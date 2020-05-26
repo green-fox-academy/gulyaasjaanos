@@ -46,6 +46,13 @@ app.post("/playlist-tracks/:playlist_id", (req,res) => {
     .catch( (error) => res.status(500).send({"error":error}) );
 });
 
+app.delete("/playlist-tracks/:playlist_id", (req,res) => {
+    sql.deleteTrack(req.params.playlist_id,req.body.file)
+    .then( (response) => sql.listTracks(req.params.playlist_id) )
+    .then( (reread) => res.send(reread))
+    .catch( (error) => res.status(500).send({"error":error}) );
+});
+
 app.get("/playlist-tracks", (req,res) => {
     sql.listAllTracks()
     .then( (response) => res.send(response) )

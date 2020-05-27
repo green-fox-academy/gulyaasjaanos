@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo app</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <main>
+        <form action="" class="control">
+            <select name="id" id="id">
+                <option value="new">new</option>
+            </select>
+            <input type="text" name="task" id="task" minlength="3">
+            <textarea name="description" id="description" cols="30" rows="1" minlength="3"></textarea>
+            <input type="number" name="urgency" id="urgency" min="0" max="4">
+            <button type="submit">send</button>
+        </form>
+        <button type="delete">delete</button>
+        <section></section>
+    </main>
+    <script src="../js/main.js"></script>
+</body>
+</html>

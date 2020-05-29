@@ -1,0 +1,61 @@
+body {
+    background: #232323;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    align-self: flex-end;
+    color: #eee;
+    font-size: 3em;
+    cursor: pointer;
+}
+
+main {
+    margin: 0 auto;
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+}
+
+.ware {
+    width: 150px;
+    height: 150px;
+    background-image: url("../asset/veggies.jpg");
+    background-size: 100% 100%;
+    position: relative;
+}
+.ware::after {
+    content: attr(data-ware);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    background-color: #232323c5;
+    color: white;
+    font-weight: 900;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+article .tag {
+    display: flex;
+    justify-content: space-between;
+    color: #eee;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+article .tag i {
+    cursor: pointer;
+}
+article .tag i.inBasket {
+    color: lime;
+}

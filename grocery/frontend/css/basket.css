@@ -1,0 +1,37 @@
+h3 {
+    cursor: pointer;
+    user-select: none;
+}
+
+article {
+    display: flex;
+    font-size: 1.7em;
+}
+article div {
+    margin-right: 1em;
+}
+.less,
+.more {
+    font-weight: 900;
+    cursor: pointer;
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.less {
+    color: #eee;
+    background:red;
+    border-radius: 25px 5px 5px 25px;
+}
+.more {
+    color: #eee;
+    background: lime;
+    border-radius: 5px 25px 25px 5px;
+}
+.total {
+    font-size: 1.7em;
+    font-weight: 900;
+}
